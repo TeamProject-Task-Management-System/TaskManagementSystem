@@ -12,4 +12,7 @@ public interface Bug extends Task {
     Severity getSeverity();
 
     void addStep();
+
+    void advanceSeverity(Severity severity);
+    void revertSeverity(Severity severity);
 }

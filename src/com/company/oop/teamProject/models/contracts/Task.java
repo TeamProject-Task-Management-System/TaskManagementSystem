@@ -17,4 +17,7 @@ public interface Task extends Identifiable {
     List<EventLog> getHistory();
 
     void addComment(Comment comment);
+
+    void advanceStatus(Status status);
+    void revertStatus(Status status);
 }

@@ -6,4 +6,7 @@ import com.company.oop.teamProject.models.tasks.enums.Size;
 public interface Story extends Task {
 
     Size getSize();
+
+    void advanceSize(Size size);
+    void revertSize(Size size);
 }

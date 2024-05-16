@@ -38,6 +38,9 @@ public abstract class TaskImpl implements Task {
 
     protected abstract void validateDescription(String description);
 
+    public abstract void advanceStatus(Status status);
+    public abstract void revertStatus(Status status);
+
     public String getTitle() {
         return title;
     }
