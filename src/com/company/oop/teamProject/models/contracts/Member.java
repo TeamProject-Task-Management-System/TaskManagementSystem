@@ -10,7 +10,7 @@ public interface Member {
 
     List<EventLog> getActivityHistory();
 
-    void addTask();
+    void addTask(Task task);
 
-    void addActivity();
+    void addActivity(EventLog eventLog);
 }
