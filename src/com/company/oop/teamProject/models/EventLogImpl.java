@@ -20,9 +20,6 @@ public class EventLogImpl implements EventLog {
         return String.format("[%s] %s", timeStamp.format(formatter), description);
     }
 
-    public LocalDate getTimeStamp(){
-        return timeStamp;
-    }
 
     public void setDescription(String description){
         if ( description.isEmpty()){

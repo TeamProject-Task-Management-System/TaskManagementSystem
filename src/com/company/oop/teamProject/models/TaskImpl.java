@@ -13,7 +13,7 @@ public abstract class TaskImpl implements Task {
     private int id;
     private String title;
     private String description;
-    private final Status status;
+    protected Status status;
     private final List<Comment> comments = new ArrayList<>();
     private final List<EventLog> eventLogs = new ArrayList<>();
 
@@ -38,8 +38,8 @@ public abstract class TaskImpl implements Task {
 
     protected abstract void validateDescription(String description);
 
-    public abstract void advanceStatus(Status status);
-    public abstract void revertStatus(Status status);
+    public abstract void advanceStatus();
+    public abstract void revertStatus();
 
     public String getTitle() {
         return title;

@@ -7,12 +7,11 @@ import java.util.List;
 
 public interface Bug extends Task {
 
-    List<String> steps();
 
     Severity getSeverity();
 
-    void addStep();
+    void addStep(String step);
 
-    void advanceSeverity(Severity severity);
-    void revertSeverity(Severity severity);
+    void advanceSeverity();
+    void revertSeverity();
 }
