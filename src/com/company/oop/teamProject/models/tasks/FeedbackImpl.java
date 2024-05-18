@@ -1,14 +1,9 @@
 package com.company.oop.teamProject.models.tasks;
 
 import com.company.oop.teamProject.models.TaskImpl;
-import com.company.oop.teamProject.models.contracts.Comment;
 import com.company.oop.teamProject.models.enums.Status;
 import com.company.oop.teamProject.models.tasks.contracts.Feedback;
 import com.company.oop.teamProject.utils.ValidationHelper;
-import jdk.jshell.Snippet;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class FeedbackImpl extends TaskImpl implements Feedback {
 

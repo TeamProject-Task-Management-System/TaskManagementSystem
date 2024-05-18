@@ -1,4 +1,23 @@
 package com.company.oop.teamProject.models;
 
-public class CommentImpl {
+import com.company.oop.teamProject.models.contracts.Comment;
+
+import java.util.List;
+
+public class CommentImpl implements Comment {
+    private String author;
+    private String description;
+
+    public CommentImpl(String author, String description) {
+        this.author = author;
+        this.description = description;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
