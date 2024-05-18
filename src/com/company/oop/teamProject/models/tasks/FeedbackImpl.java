@@ -39,6 +39,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
 
     @Override
     public void advanceStatus() {
+        Status previousStatus = this.status;
         switch (this.status){
             case NEW:
                 this.status = Status.UNSCHEDULED;
@@ -50,12 +51,17 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
                 this.status = Status.DONE;
                 break;
             case DONE:
+                createNewEvent(String.format("Can't advance, Feedback status already at %s", status));
                 break;
+        }
+        if (!previousStatus.equals(Status.DONE) && !status.equals(Status.DONE)) {
+            createNewEvent(String.format("Feedback status changed from %s to %s", previousStatus, status));
         }
     }
 
     @Override
     public void revertStatus() {
+        Status previousStatus = this.status;
         switch (this.status){
             case DONE:
                 this.status = Status.SCHEDULED;
@@ -67,7 +73,11 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
                 this.status = Status.NEW;
                 break;
             case NEW:
+                createNewEvent(String.format("Can't revert, Feedback status already at %s", status));
                 break;
+        }
+        if (!previousStatus.equals(Status.NEW)) {
+            createNewEvent(String.format("Feedback status changed from %s to %s", previousStatus, status));
         }
     }
 

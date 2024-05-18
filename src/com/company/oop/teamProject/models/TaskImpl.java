@@ -57,6 +57,9 @@ public abstract class TaskImpl implements Task {
         return new ArrayList<>(comments);
     }
 
+    protected void createNewEvent(String event) {
+        eventLogs.add(new EventLogImpl(event));
+    }
 
     public List<EventLog> getHistory() {
         return new ArrayList<>(eventLogs);

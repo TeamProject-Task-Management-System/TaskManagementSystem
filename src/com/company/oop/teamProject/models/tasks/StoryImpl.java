@@ -36,7 +36,8 @@ public class StoryImpl extends Content implements Story {
 
     @Override
     public void advanceStatus() {
-        switch (this.status) {
+        Status previousStatus = this.status;
+        switch (this.status){
             case NOT_DONE:
                 this.status = Status.IN_PROGRESS;
                 break;
@@ -44,14 +45,20 @@ public class StoryImpl extends Content implements Story {
                 this.status = Status.DONE;
                 break;
             case DONE:
+                createNewEvent(String.format("Can't advance, Story status already at %s", status));
                 break;
+        }
+        if (!previousStatus.equals(Status.DONE) && !status.equals(Status.DONE)) {
+            createNewEvent(String.format("Story status changed from %s to %s", previousStatus, status));
         }
     }
 
     @Override
     public void revertStatus() {
-        switch (this.status) {
+        Status previousStatus = this.status;
+        switch (this.status){
             case NOT_DONE:
+                createNewEvent(String.format("Can't revert, Story status already at %s", status));
                 break;
             case IN_PROGRESS:
                 this.status = Status.NOT_DONE;
@@ -59,6 +66,9 @@ public class StoryImpl extends Content implements Story {
             case DONE:
                 this.status = Status.IN_PROGRESS;
                 break;
+        }
+        if (!previousStatus.equals(Status.NOT_DONE)) {
+            createNewEvent(String.format("Story status changed from %s to %s", previousStatus, status));
         }
     }
 
@@ -69,6 +79,7 @@ public class StoryImpl extends Content implements Story {
 
     @Override
     public void advanceSize() {
+        Size previousSize = this.size;
         switch (this.size) {
             case SMALL:
                 this.size = Size.MEDIUM;
@@ -77,14 +88,20 @@ public class StoryImpl extends Content implements Story {
                 this.size = Size.LARGE;
                 break;
             case LARGE:
+                createNewEvent(String.format("Can't advance, already at %s", size));
                 break;
+        }
+        if (!previousSize.equals(Size.LARGE) && !size.equals(Size.LARGE)) {
+            createNewEvent(String.format("Size changed from %s to %s", previousSize, size));
         }
     }
 
     @Override
     public void revertSize() {
+        Size previousSize = this.size;
         switch (this.size) {
             case SMALL:
+                createNewEvent(String.format("Can't revert, already at %s", size));
                 break;
             case MEDIUM:
                 this.size = Size.SMALL;
@@ -92,6 +109,9 @@ public class StoryImpl extends Content implements Story {
             case LARGE:
                 this.size = Size.MEDIUM;
                 break;
+        }
+        if (!previousSize.equals(Size.SMALL)) {
+            createNewEvent(String.format("Size changed from %s to %s", previousSize, size));
         }
     }
 }

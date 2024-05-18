@@ -46,27 +46,40 @@ public class BugImpl extends Content implements Bug {
 
     @Override
     public void advanceStatus() {
+        Status previousStatus = this.status;
         switch (this.status){
             case NOT_DONE:
+                this.status = Status.IN_PROGRESS;
                 break;
             case IN_PROGRESS:
+                this.status = Status.DONE;
                 break;
             case DONE:
+                createNewEvent(String.format("Can't advance, Bug status already at %s", status));
                 break;
+        }
+        if (!previousStatus.equals(Status.DONE) && !status.equals(Status.DONE)) {
+            createNewEvent(String.format("Bug status changed from %s to %s", previousStatus, status));
         }
     }
 
     @Override
     public void revertStatus() {
+        Status previousStatus = this.status;
         switch (this.status){
-            case DONE:
+            case NOT_DONE:
+                createNewEvent(String.format("Can't revert, Bug status already at %s", status));
                 break;
             case IN_PROGRESS:
+                this.status = Status.NOT_DONE;
                 break;
-            case NOT_DONE:
+            case DONE:
+                this.status = Status.IN_PROGRESS;
                 break;
         }
-
+        if (!previousStatus.equals(Status.NOT_DONE)) {
+            createNewEvent(String.format("Bug status changed from %s to %s", previousStatus, status));
+        }
     }
 
     @Override
@@ -81,6 +94,7 @@ public class BugImpl extends Content implements Bug {
 
     @Override
     public void advanceSeverity() {
+        Severity previousSeverity = this.severity;
         switch (this.severity){
             case MINOR:
                 this.severity = Severity.MAJOR;
@@ -89,16 +103,20 @@ public class BugImpl extends Content implements Bug {
                 this.severity = Severity.CRITICAL;
                 break;
             case CRITICAL:
+                createNewEvent(String.format("Can't advance, already at %s", severity));
                 break;
-
         }
-
+        if (!previousSeverity.equals(Severity.CRITICAL) && !severity.equals(Severity.CRITICAL)) {
+            createNewEvent(String.format("Severity changed from %s to %s", previousSeverity, severity));
+        }
     }
 
     @Override
     public void revertSeverity() {
+        Severity previousSeverity = this.severity;
         switch (this.severity){
             case MINOR:
+                createNewEvent(String.format("Can't revert, already at %s", severity));
                 break;
             case MAJOR:
                 this.severity = Severity.MINOR;
@@ -106,8 +124,9 @@ public class BugImpl extends Content implements Bug {
             case CRITICAL:
                 this.severity = Severity.MAJOR;
                 break;
-
         }
-
+        if (!previousSeverity.equals(Severity.MINOR)) {
+            createNewEvent(String.format("Severity changed from %s to %s", previousSeverity, severity));
+        }
     }
 }
