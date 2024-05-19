@@ -45,41 +45,23 @@ public class BugImpl extends Content implements Bug {
     }
 
     @Override
-    public void advanceStatus() {
+    public void changeStatus(Status newStatus) {
+        if (newStatus == this.status) {
+            throw new IllegalArgumentException(String.format("Bug status is already %s", status));
+        }
         Status previousStatus = this.status;
-        switch (this.status){
-            case NOT_DONE:
-                this.status = Status.IN_PROGRESS;
-                break;
-            case IN_PROGRESS:
-                this.status = Status.DONE;
-                break;
-            case DONE:
-                createNewEvent(String.format("Can't advance, Bug status already at %s", status));
-                break;
-        }
-        if (!previousStatus.equals(Status.DONE) && !status.equals(Status.DONE)) {
-            createNewEvent(String.format("Bug status changed from %s to %s", previousStatus, status));
-        }
+        this.status = newStatus;
+        createNewEvent(String.format("Bug status changed from %s to %s", previousStatus, status));
     }
 
     @Override
-    public void revertStatus() {
-        Status previousStatus = this.status;
-        switch (this.status){
-            case NOT_DONE:
-                createNewEvent(String.format("Can't revert, Bug status already at %s", status));
-                break;
-            case IN_PROGRESS:
-                this.status = Status.NOT_DONE;
-                break;
-            case DONE:
-                this.status = Status.IN_PROGRESS;
-                break;
+    public void changeSeverity(Severity newSeverity) {
+        if (newSeverity == this.severity) {
+            throw new IllegalArgumentException(String.format("Severity is already %s", severity));
         }
-        if (!previousStatus.equals(Status.NOT_DONE)) {
-            createNewEvent(String.format("Bug status changed from %s to %s", previousStatus, status));
-        }
+        Severity previousSeverity = this.severity;
+        this.severity = newSeverity;
+        createNewEvent(String.format("Severity status changed from %s to %s", previousSeverity, severity));
     }
 
     @Override
@@ -90,43 +72,5 @@ public class BugImpl extends Content implements Bug {
     @Override
     public void addStep(String step) {
         steps.add(step);
-    }
-
-    @Override
-    public void advanceSeverity() {
-        Severity previousSeverity = this.severity;
-        switch (this.severity){
-            case MINOR:
-                this.severity = Severity.MAJOR;
-                break;
-            case MAJOR:
-                this.severity = Severity.CRITICAL;
-                break;
-            case CRITICAL:
-                createNewEvent(String.format("Can't advance, already at %s", severity));
-                break;
-        }
-        if (!previousSeverity.equals(Severity.CRITICAL) && !severity.equals(Severity.CRITICAL)) {
-            createNewEvent(String.format("Severity changed from %s to %s", previousSeverity, severity));
-        }
-    }
-
-    @Override
-    public void revertSeverity() {
-        Severity previousSeverity = this.severity;
-        switch (this.severity){
-            case MINOR:
-                createNewEvent(String.format("Can't revert, already at %s", severity));
-                break;
-            case MAJOR:
-                this.severity = Severity.MINOR;
-                break;
-            case CRITICAL:
-                this.severity = Severity.MAJOR;
-                break;
-        }
-        if (!previousSeverity.equals(Severity.MINOR)) {
-            createNewEvent(String.format("Severity changed from %s to %s", previousSeverity, severity));
-        }
     }
 }

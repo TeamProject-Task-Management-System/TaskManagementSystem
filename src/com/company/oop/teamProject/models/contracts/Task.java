@@ -18,6 +18,5 @@ public interface Task extends Identifiable {
 
     void addComment(Comment comment);
 
-    void advanceStatus();
-    void revertStatus();
+    void changeStatus(Status newStatus);
 }

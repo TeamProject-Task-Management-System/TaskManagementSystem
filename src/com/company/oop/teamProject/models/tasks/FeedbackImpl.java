@@ -33,47 +33,13 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     @Override
-    public void advanceStatus() {
+    public void changeStatus(Status newStatus) {
+        if (newStatus == this.status) {
+            throw new IllegalArgumentException(String.format("Feedback status is already %s", status));
+        }
         Status previousStatus = this.status;
-        switch (this.status){
-            case NEW:
-                this.status = Status.UNSCHEDULED;
-                break;
-            case UNSCHEDULED:
-                this.status = Status.SCHEDULED;
-                break;
-            case SCHEDULED:
-                this.status = Status.DONE;
-                break;
-            case DONE:
-                createNewEvent(String.format("Can't advance, Feedback status already at %s", status));
-                break;
-        }
-        if (!previousStatus.equals(Status.DONE) && !status.equals(Status.DONE)) {
-            createNewEvent(String.format("Feedback status changed from %s to %s", previousStatus, status));
-        }
-    }
-
-    @Override
-    public void revertStatus() {
-        Status previousStatus = this.status;
-        switch (this.status){
-            case DONE:
-                this.status = Status.SCHEDULED;
-                break;
-            case SCHEDULED:
-                this.status = Status.UNSCHEDULED;
-                break;
-            case UNSCHEDULED:
-                this.status = Status.NEW;
-                break;
-            case NEW:
-                createNewEvent(String.format("Can't revert, Feedback status already at %s", status));
-                break;
-        }
-        if (!previousStatus.equals(Status.NEW)) {
-            createNewEvent(String.format("Feedback status changed from %s to %s", previousStatus, status));
-        }
+        this.status = newStatus;
+        createNewEvent(String.format("Feedback status changed from %s to %s", previousStatus, status));
     }
 
     @Override
@@ -82,7 +48,9 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     @Override
-    public void changeRating(int rating) {
-        this.rating = rating;
+    public void changeRating(int newRating) {
+        int previousRating = rating;
+        this.rating = newRating;
+        createNewEvent(String.format("Feedback rating changed from %s to %s", previousRating, rating));
     }
 }

@@ -4,6 +4,7 @@ import com.company.oop.teamProject.models.contracts.Member;
 import com.company.oop.teamProject.models.enums.Status;
 import com.company.oop.teamProject.models.tasks.contracts.Story;
 import com.company.oop.teamProject.models.tasks.enums.Priority;
+import com.company.oop.teamProject.models.tasks.enums.Severity;
 import com.company.oop.teamProject.models.tasks.enums.Size;
 import com.company.oop.teamProject.utils.ValidationHelper;
 
@@ -35,41 +36,13 @@ public class StoryImpl extends Content implements Story {
     }
 
     @Override
-    public void advanceStatus() {
+    public void changeStatus(Status newStatus) {
+        if (newStatus == this.status) {
+            throw new IllegalArgumentException(String.format("Story status is already %s", status));
+        }
         Status previousStatus = this.status;
-        switch (this.status){
-            case NOT_DONE:
-                this.status = Status.IN_PROGRESS;
-                break;
-            case IN_PROGRESS:
-                this.status = Status.DONE;
-                break;
-            case DONE:
-                createNewEvent(String.format("Can't advance, Story status already at %s", status));
-                break;
-        }
-        if (!previousStatus.equals(Status.DONE) && !status.equals(Status.DONE)) {
-            createNewEvent(String.format("Story status changed from %s to %s", previousStatus, status));
-        }
-    }
-
-    @Override
-    public void revertStatus() {
-        Status previousStatus = this.status;
-        switch (this.status){
-            case NOT_DONE:
-                createNewEvent(String.format("Can't revert, Story status already at %s", status));
-                break;
-            case IN_PROGRESS:
-                this.status = Status.NOT_DONE;
-                break;
-            case DONE:
-                this.status = Status.IN_PROGRESS;
-                break;
-        }
-        if (!previousStatus.equals(Status.NOT_DONE)) {
-            createNewEvent(String.format("Story status changed from %s to %s", previousStatus, status));
-        }
+        this.status = newStatus;
+        createNewEvent(String.format("Story status changed from %s to %s", previousStatus, status));
     }
 
     @Override
@@ -78,40 +51,13 @@ public class StoryImpl extends Content implements Story {
     }
 
     @Override
-    public void advanceSize() {
+    public void changeSize(Size newSize) {
+        if (newSize == this.size) {
+            throw new IllegalArgumentException(String.format("Size is already %s", size));
+        }
         Size previousSize = this.size;
-        switch (this.size) {
-            case SMALL:
-                this.size = Size.MEDIUM;
-                break;
-            case MEDIUM:
-                this.size = Size.LARGE;
-                break;
-            case LARGE:
-                createNewEvent(String.format("Can't advance, already at %s", size));
-                break;
-        }
-        if (!previousSize.equals(Size.LARGE) && !size.equals(Size.LARGE)) {
-            createNewEvent(String.format("Size changed from %s to %s", previousSize, size));
-        }
+        this.size = newSize;
+        createNewEvent(String.format("Size status changed from %s to %s", previousSize, size));
     }
 
-    @Override
-    public void revertSize() {
-        Size previousSize = this.size;
-        switch (this.size) {
-            case SMALL:
-                createNewEvent(String.format("Can't revert, already at %s", size));
-                break;
-            case MEDIUM:
-                this.size = Size.SMALL;
-                break;
-            case LARGE:
-                this.size = Size.MEDIUM;
-                break;
-        }
-        if (!previousSize.equals(Size.SMALL)) {
-            createNewEvent(String.format("Size changed from %s to %s", previousSize, size));
-        }
-    }
 }

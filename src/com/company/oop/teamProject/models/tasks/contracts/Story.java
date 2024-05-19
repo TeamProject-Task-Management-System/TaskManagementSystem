@@ -7,6 +7,5 @@ public interface Story extends Task {
 
     Size getSize();
 
-    void advanceSize();
-    void revertSize();
+    void changeSize(Size newSize);
 }
