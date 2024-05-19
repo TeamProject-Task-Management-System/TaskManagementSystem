@@ -2,8 +2,6 @@ package com.company.oop.teamProject.models;
 
 import com.company.oop.teamProject.models.contracts.Comment;
 
-import java.util.List;
-
 public class CommentImpl implements Comment {
     private String author;
     private String description;
