@@ -4,5 +4,5 @@ import com.company.oop.teamProject.command.contracts.Command;
 
 public interface CommandFactory {
 
-    Command createCommandFromCommandName(String commandTypeAsString, VehicleDealershipRepository vehicleDealershipRepository);
+    Command createCommandFromCommandName(String commandTypeAsString, TaskManagementRepository taskManagementRepository);
 }

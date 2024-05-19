@@ -9,6 +9,9 @@ import com.company.oop.teamProject.models.tasks.enums.Priority;
 import com.company.oop.teamProject.models.tasks.enums.Severity;
 import com.company.oop.teamProject.models.tasks.enums.Size;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface TaskManagementRepository {
 
     Member createNewPerson(String name);
@@ -25,22 +28,26 @@ public interface TaskManagementRepository {
 
     Feedback createNewFeedback(int id, String title, String description, Status status, int rating);
 
-    Bug changeBugStatus(Status newStatus);
+    void changeBugStatus(Status newStatus);
 
-    Story changeStoryStatus(Status newStatus);
+    void changeStoryStatus(Status newStatus);
 
-    Feedback changeFeedbackStatus(String newStatus);
+    void changeFeedbackStatus(String newStatus);
 
-    Bug changeBugPriority(Priority newPriority);
+    void changeBugPriority(Priority newPriority);
 
-    Story changeStoryPriority(Priority newPriority);
+    void changeStoryPriority(Priority newPriority);
 
-    Bug changeSeverity(Severity newSeverity);
+    void changeSeverity(Severity newSeverity);
 
-    Story changeSize(Size newSize);
+    void changeSize(Size newSize);
 
-    Feedback changeRating(int newRating);
+    void changeRating(int newRating);
 
     Comment addComment(String author, String description);
+
+    public List<Member> getMembers();
+
+    public List<Board> getBoards();
 
 }
