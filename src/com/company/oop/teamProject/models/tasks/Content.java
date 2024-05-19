@@ -17,7 +17,6 @@ public abstract class Content extends TaskImpl implements Assignable, Prioritiza
         this.priority = priority;
     }
 
-
     public Member getAssignee() {
         return assignee;
     }
