@@ -164,27 +164,19 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public String showAllMembers() {
+    public String showAllMembers(List<Member> members) {
         if (members.isEmpty()) {
             throw new IllegalArgumentException("There are no members!");
         }
-        StringBuilder result = new StringBuilder();
-        for (Member member : members) {
-            result.append(member.toString()).append("\n");
-        }
-        return result.toString();
+        return showLists(members);
     }
 
     @Override
-    public String showAllTeams() {
+    public String showAllTeams(List<Team> teams) {
         if (teams.isEmpty()) {
             throw new IllegalArgumentException("There are no teams!");
         }
-        StringBuilder result = new StringBuilder();
-        for (Team team : teams) {
-            result.append(team.toString()).append("\n");
-        }
-        return result.toString();
+        return showLists(teams);
     }
 
     @Override
@@ -234,5 +226,13 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     public List<Feedback> getFeedbacks() {
         return new ArrayList<>(feedbacks);
+    }
+
+    private <E> String showLists(List<E> elements) {
+        StringBuilder result = new StringBuilder();
+        for (E element : elements) {
+            result.append(element.toString()).append(System.lineSeparator());
+        }
+        return result.toString();
     }
 }
