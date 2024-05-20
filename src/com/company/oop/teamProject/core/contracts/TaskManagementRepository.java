@@ -20,7 +20,7 @@ public interface TaskManagementRepository {
 
     Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity);
 
-    Story createNewStory(int id, String title, String description, Member assignee, Priority priority, Size size);
+    Story createNewStory(String title, String description, Member assignee, Priority priority, Size size);
 
     Feedback createNewFeedback(int id, String title, String description, int rating);
 

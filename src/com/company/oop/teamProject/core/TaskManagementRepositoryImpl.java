@@ -24,7 +24,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
 
     private static final String MEMBER_ADDED_TO_TEAM_SUCC = "%s has been added to %s.";
-    private static final String BUG_CREATED = "Bug with name %s created.";
     private static final String STORY_CREATED = "Story with name %s created.";
     private static final String FEEDBACK_CREATED = "Feedback with name %s created.";
     private static final String COMMENT_CREATED = "Created comment with author %s.";
@@ -89,9 +88,8 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public Story createNewStory(int id, String title, String description, Member assignee, Priority priority,
+    public Story createNewStory(String title, String description, Member assignee, Priority priority,
                                 Size size) {
-        System.out.println(String.format(STORY_CREATED, title));
         return new StoryImpl(++nextId, title, description, assignee, priority, size);
     }
 
