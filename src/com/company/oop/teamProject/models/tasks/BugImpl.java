@@ -1,8 +1,8 @@
 package com.company.oop.teamProject.models.tasks;
 
 import com.company.oop.teamProject.models.contracts.Member;
-import com.company.oop.teamProject.models.enums.Status;
 import com.company.oop.teamProject.models.tasks.contracts.Bug;
+import com.company.oop.teamProject.models.tasks.enums.EnumsForBugStatus;
 import com.company.oop.teamProject.models.tasks.enums.Priority;
 import com.company.oop.teamProject.models.tasks.enums.Severity;
 import com.company.oop.teamProject.utils.ValidationHelper;
@@ -20,11 +20,18 @@ public class BugImpl extends Content implements Bug {
     public static final int DESCRIPTION_MAX_LENGTH = 500;
     public static final String DESCRIPTION_ERR_MESSAGE = "Description name must be between 10 and 500";
 
+    private int id;
     private Severity severity;
     private final List<String> steps = new ArrayList<>();
+    private EnumsForBugStatus status;
+    private List<Bug> bugs;
 
-    public BugImpl(int id, String title, String description, Status status, Member assignee, Priority priority) {
-        super(id, title, description, status, assignee, priority);
+    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity) {
+        super(title, description, assignee, priority);
+        this.id = id;
+        this.status = EnumsForBugStatus.ACTIVE;
+        this.severity = severity;
+        this.bugs = new ArrayList<>();
     }
 
 
@@ -45,13 +52,26 @@ public class BugImpl extends Content implements Bug {
     }
 
     @Override
-    public void changeStatus(Status newStatus) {
+    public void changeBugStatus(EnumsForBugStatus newStatus) {
         if (newStatus == this.status) {
             throw new IllegalArgumentException(String.format("Bug status is already %s", status));
         }
-        Status previousStatus = this.status;
+        EnumsForBugStatus previousStatus = this.status;
         this.status = newStatus;
         createNewEvent(String.format("Bug status changed from %s to %s", previousStatus, status));
+    }
+
+    public List<Bug> getBugs() {
+        return new ArrayList<>(bugs);
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    public List<String> getSteps() {
+        return new ArrayList<>(steps);
     }
 
     @Override

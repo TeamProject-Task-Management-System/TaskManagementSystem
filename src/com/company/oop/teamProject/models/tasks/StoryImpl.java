@@ -1,10 +1,9 @@
 package com.company.oop.teamProject.models.tasks;
 
 import com.company.oop.teamProject.models.contracts.Member;
-import com.company.oop.teamProject.models.enums.Status;
 import com.company.oop.teamProject.models.tasks.contracts.Story;
+import com.company.oop.teamProject.models.tasks.enums.EnumsForStoryStatus;
 import com.company.oop.teamProject.models.tasks.enums.Priority;
-import com.company.oop.teamProject.models.tasks.enums.Severity;
 import com.company.oop.teamProject.models.tasks.enums.Size;
 import com.company.oop.teamProject.utils.ValidationHelper;
 
@@ -17,10 +16,14 @@ public class StoryImpl extends Content implements Story {
     public static final int DESCRIPTION_MAX_LENGTH = 500;
     public static final String DESCRIPTION_ERR_MESSAGE = "Description must be between 10 and 500";
 
+    private int id;
     private Size size;
+    private EnumsForStoryStatus status;
 
-    public StoryImpl(int id, String title, String description, Status status, Member assignee, Priority priority, Size size) {
-        super(id, title, description, status, assignee, priority);
+    public StoryImpl(int id, String title, String description, Member assignee, Priority priority, Size size) {
+        super(title, description, assignee, priority);
+        this.id = id;
+        this.status = EnumsForStoryStatus.NOT_DONE;
         this.size = size;
     }
 
@@ -36,11 +39,11 @@ public class StoryImpl extends Content implements Story {
     }
 
     @Override
-    public void changeStatus(Status newStatus) {
+    public void changeStoryStatus(EnumsForStoryStatus newStatus) {
         if (newStatus == this.status) {
             throw new IllegalArgumentException(String.format("Story status is already %s", status));
         }
-        Status previousStatus = this.status;
+        EnumsForStoryStatus previousStatus = this.status;
         this.status = newStatus;
         createNewEvent(String.format("Story status changed from %s to %s", previousStatus, status));
     }
@@ -60,4 +63,8 @@ public class StoryImpl extends Content implements Story {
         createNewEvent(String.format("Size status changed from %s to %s", previousSize, size));
     }
 
+    @Override
+    public int getId() {
+        return id;
+    }
 }

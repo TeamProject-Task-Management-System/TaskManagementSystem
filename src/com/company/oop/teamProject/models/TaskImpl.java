@@ -3,25 +3,20 @@ package com.company.oop.teamProject.models;
 import com.company.oop.teamProject.models.contracts.Comment;
 import com.company.oop.teamProject.models.contracts.EventLog;
 import com.company.oop.teamProject.models.contracts.Task;
-import com.company.oop.teamProject.models.enums.Status;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class TaskImpl implements Task {
 
-    private int id;
     private String title;
     private String description;
-    protected Status status;
     private final List<Comment> comments = new ArrayList<>();
     private final List<EventLog> eventLogs = new ArrayList<>();
 
-    public TaskImpl(int id, String title, String description, Status status) {
-        this.id = id;
+    public TaskImpl(String title, String description) {
         setTitle(title);
         setDescription(description);
-        this.status = status;
     }
 
     private void setTitle(String title) {
@@ -38,18 +33,12 @@ public abstract class TaskImpl implements Task {
 
     protected abstract void validateDescription(String description);
 
-    public abstract void changeStatus(Status newStatus);
-
     public String getTitle() {
         return title;
     }
 
     public String getDescription() {
         return description;
-    }
-
-    public Status getStatus() {
-        return status;
     }
 
     public List<Comment> getComments() {
@@ -64,11 +53,4 @@ public abstract class TaskImpl implements Task {
         return new ArrayList<>(eventLogs);
     }
 
-    public void addComment(Comment comment) {
-        comments.add(comment);
-    }
-
-    public int getId() {
-        return id;
-    }
 }

@@ -1,53 +1,60 @@
 package com.company.oop.teamProject.core.contracts;
 
 import com.company.oop.teamProject.models.contracts.*;
-import com.company.oop.teamProject.models.enums.Status;
 import com.company.oop.teamProject.models.tasks.contracts.Bug;
 import com.company.oop.teamProject.models.tasks.contracts.Feedback;
 import com.company.oop.teamProject.models.tasks.contracts.Story;
-import com.company.oop.teamProject.models.tasks.enums.Priority;
-import com.company.oop.teamProject.models.tasks.enums.Severity;
-import com.company.oop.teamProject.models.tasks.enums.Size;
+import com.company.oop.teamProject.models.tasks.enums.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface TaskManagementRepository {
 
-    Member createNewPerson(String name);
+    Member createNewMember(String name);
 
     Team createNewTeam(String name);
 
-    void addMemberToTeam(Member memberToAdd);
+    void addMemberToTeam(Member memberToAdd, Team team);
 
     Board createNewBoard(String name);
 
-    Bug createNewBug(int id, String title, String description, Status status, Member assignee, Priority priority);
+    Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity);
 
-    Story createNewStory(int id, String title, String description, Status status, Member assignee, Priority priority, Size size);
+    Story createNewStory(int id, String title, String description, Member assignee, Priority priority, Size size);
 
-    Feedback createNewFeedback(int id, String title, String description, Status status, int rating);
+    Feedback createNewFeedback(int id, String title, String description, int rating);
 
-    void changeBugStatus(Status newStatus);
+    Comment createComment(String author, String description);
 
-    void changeStoryStatus(Status newStatus);
+    Member getMemberByName(String memberName);
 
-    void changeFeedbackStatus(String newStatus);
+    Team getTeamByName(String teamName);
 
-    void changeBugPriority(Priority newPriority);
+    Board getBoardByName(String name);
 
-    void changeStoryPriority(Priority newPriority);
+    Bug getBugByID(int bugID);
 
-    void changeSeverity(Severity newSeverity);
+    Story getStoryByID(int ID);
 
-    void changeSize(Size newSize);
+    Feedback getFeedbackByID(int ID);
 
-    void changeRating(int newRating);
+    String showAllMembers();
 
-    Comment addComment(String author, String description);
+    String showAllTeams();
+
+    String showAllBoards();
+
+    String showAllTeamMembers(String teamName);
 
     public List<Member> getMembers();
 
     public List<Board> getBoards();
 
+    public List<Team> getTeams();
+
+    public List<Bug> getBugs();
+
+    public List<Story> getStories();
+
+    public List<Feedback> getFeedbacks();
 }

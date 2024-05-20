@@ -8,9 +8,8 @@ public interface Board {
 
     List<Task> getTasks();
 
-    List<EventLog> getActivityHistory();
+    List<EventLog> getHistory();
 
     void addTask(Task task);
 
-    void addActivity(EventLog eventLog);
 }

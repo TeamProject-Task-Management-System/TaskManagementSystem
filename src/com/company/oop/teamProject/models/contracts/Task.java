@@ -1,7 +1,5 @@
 package com.company.oop.teamProject.models.contracts;
 
-import com.company.oop.teamProject.models.enums.Status;
-
 import java.util.List;
 
 public interface Task extends Identifiable {
@@ -10,13 +8,7 @@ public interface Task extends Identifiable {
 
     String getDescription();
 
-    Status getStatus();
-
     List<Comment> getComments();
 
     List<EventLog> getHistory();
-
-    void addComment(Comment comment);
-
-    void changeStatus(Status newStatus);
 }

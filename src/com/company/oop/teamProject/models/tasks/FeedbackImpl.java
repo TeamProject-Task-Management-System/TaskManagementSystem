@@ -1,8 +1,8 @@
 package com.company.oop.teamProject.models.tasks;
 
 import com.company.oop.teamProject.models.TaskImpl;
-import com.company.oop.teamProject.models.enums.Status;
 import com.company.oop.teamProject.models.tasks.contracts.Feedback;
+import com.company.oop.teamProject.models.tasks.enums.EnumsForFeedbackStatus;
 import com.company.oop.teamProject.utils.ValidationHelper;
 
 public class FeedbackImpl extends TaskImpl implements Feedback {
@@ -14,12 +14,15 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     public static final int DESCRIPTION_MAX_LENGTH = 500;
     public static final String DESCRIPTION_ERR_MESSAGE = "Description must be between 10 and 500";
 
-
+    private int id;
     private int rating;
+    private EnumsForFeedbackStatus status;
 
-    public FeedbackImpl(int id, String title, String description, Status status, int rating) {
-        super(id, title, description, status);
+    public FeedbackImpl(int id, String title, String description, int rating) {
+        super(title, description);
+        this.id = id;
         this.rating = rating;
+        this.status = EnumsForFeedbackStatus.NEW;
     }
 
     @Override
@@ -33,11 +36,11 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     @Override
-    public void changeStatus(Status newStatus) {
+    public void changeFeedbackStatus(EnumsForFeedbackStatus newStatus) {
         if (newStatus == this.status) {
             throw new IllegalArgumentException(String.format("Feedback status is already %s", status));
         }
-        Status previousStatus = this.status;
+        EnumsForFeedbackStatus previousStatus = this.status;
         this.status = newStatus;
         createNewEvent(String.format("Feedback status changed from %s to %s", previousStatus, status));
     }
@@ -52,5 +55,10 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         int previousRating = rating;
         this.rating = newRating;
         createNewEvent(String.format("Feedback rating changed from %s to %s", previousRating, rating));
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 }

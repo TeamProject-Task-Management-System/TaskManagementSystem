@@ -8,9 +8,9 @@ public interface Member {
 
     List<Task> getTasks();
 
-    List<EventLog> getActivityHistory();
+    List<EventLog> getHistory();
 
-    void addTask(Task task);
+    void assignTask(Task task);
 
-    void addActivity(EventLog eventLog);
+    void unassignTask(Task task);
 }
