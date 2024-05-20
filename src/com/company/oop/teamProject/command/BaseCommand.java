@@ -1,5 +1,6 @@
-package com.company.oop.teamProject.command.contracts;
+package com.company.oop.teamProject.command;
 
+import com.company.oop.teamProject.command.contracts.Command;
 import com.company.oop.teamProject.core.contracts.TaskManagementRepository;
 
 import java.util.List;
