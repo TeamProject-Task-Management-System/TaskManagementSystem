@@ -24,8 +24,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
 
     private static final String MEMBER_ADDED_TO_TEAM_SUCC = "%s has been added to %s.";
-    private static final String FEEDBACK_CREATED = "Feedback with name %s created.";
-    private static final String COMMENT_CREATED = "Created comment with author %s.";
+
 
     private final List<Member> members;
     private final List<Team> teams;
@@ -93,14 +92,12 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public Feedback createNewFeedback(int id, String title, String description, int rating) {
-        System.out.println(String.format(FEEDBACK_CREATED, title));
+    public Feedback createNewFeedback(String title, String description, int rating) {
         return new FeedbackImpl(++nextId, title, description, rating);
     }
 
     @Override
     public Comment createComment(String author, String description) {
-        System.out.println(String.format(COMMENT_CREATED, author));
         return new CommentImpl(author, description);
     }
 

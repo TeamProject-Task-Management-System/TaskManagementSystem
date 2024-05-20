@@ -22,7 +22,7 @@ public interface TaskManagementRepository {
 
     Story createNewStory(String title, String description, Member assignee, Priority priority, Size size);
 
-    Feedback createNewFeedback(int id, String title, String description, int rating);
+    Feedback createNewFeedback(String title, String description, int rating);
 
     Comment createComment(String author, String description);
 

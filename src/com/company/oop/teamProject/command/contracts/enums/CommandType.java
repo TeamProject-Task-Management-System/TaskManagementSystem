@@ -6,4 +6,7 @@ public enum CommandType {
     CREATETEAM,
     CREATEBOARD,
     CREATEBUG,
+    CREATEFEEDBACK,
+    CREATECOMMENT,
+
 }

@@ -22,7 +22,7 @@ public class TeamImpl implements Team {
 
     public TeamImpl(String name) {
         setName(name);
-        this.teamMembers = new ArrayList<>();
+         this.teamMembers = new ArrayList<>();
         this.teamBoards = new ArrayList<>();
     }
 
