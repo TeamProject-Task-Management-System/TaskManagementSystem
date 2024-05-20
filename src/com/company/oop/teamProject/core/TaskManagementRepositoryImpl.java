@@ -24,7 +24,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
 
     private static final String MEMBER_ADDED_TO_TEAM_SUCC = "%s has been added to %s.";
-    private static final String STORY_CREATED = "Story with name %s created.";
     private static final String FEEDBACK_CREATED = "Feedback with name %s created.";
     private static final String COMMENT_CREATED = "Created comment with author %s.";
 
