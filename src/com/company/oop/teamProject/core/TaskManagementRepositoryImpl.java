@@ -145,22 +145,53 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
 
     @Override
     public String showAllMembers() {
-        return "";
+        if(members.isEmpty()){
+            throw new IllegalArgumentException("There are no members!");
+        }
+        StringBuilder result = new StringBuilder();
+        for(Member member : members){
+            result.append(member.toString()).append("\n");
+        }
+        return result.toString();
     }
 
     @Override
     public String showAllTeams() {
-        return "";
+        if(teams.isEmpty()){
+            throw new IllegalArgumentException("There are no teams!");
+        }
+        StringBuilder result = new StringBuilder();
+        for(Team team : teams){
+            result.append(team.toString()).append("\n");
+        }
+        return result.toString();
     }
 
     @Override
     public String showAllBoards() {
-        return "";
+        if (boards.isEmpty()){
+            throw new IllegalArgumentException(String.format("There are no boards!"));
+        }
+        StringBuilder result = new StringBuilder();
+        for(Board board : boards){
+            result.append(board.toString()).append("\n");
+            return result.toString();
+        }
+        return result.toString();
     }
 
     @Override
     public String showAllTeamMembers(String teamName) {
-        return "";
+        StringBuilder result = new StringBuilder();
+        for(Team team : teams ){
+            if(team.getName().equalsIgnoreCase(teamName)){
+                for (Member member : team.getTeamMembers()) {
+                    result.append(member).append("\n");
+                }
+                return result.toString();
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is no team with name %s!", teamName));
     }
 
     public List<Member> getMembers() {
