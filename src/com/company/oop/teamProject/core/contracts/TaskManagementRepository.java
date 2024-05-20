@@ -34,9 +34,9 @@ public interface TaskManagementRepository {
 
     Bug getBugByID(int bugID);
 
-    Story getStoryByID(int ID);
+    Story getStoryByID(int iD);
 
-    Feedback getFeedbackByID(int ID);
+    Feedback getFeedbackByID(int iD);
 
     String showAllMembers();
 

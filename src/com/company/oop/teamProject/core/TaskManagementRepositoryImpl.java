@@ -134,13 +134,23 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
     }
 
     @Override
-    public Story getStoryByID(int ID) {
-        return null;
+    public Story getStoryByID(int iD) {
+        for (Story story : stories) {
+            if (story.getId() == iD) {
+                return story;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is no story with id: %d", iD));
     }
 
     @Override
-    public Feedback getFeedbackByID(int ID) {
-        return null;
+    public Feedback getFeedbackByID(int iD) {
+        for (Feedback feedback : feedbacks) {
+            if (feedback.getId() == iD) {
+                return feedback;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is no feedback with id: %d", iD));
     }
 
     @Override
@@ -175,7 +185,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
         StringBuilder result = new StringBuilder();
         for(Board board : boards){
             result.append(board.toString()).append("\n");
-            return result.toString();
         }
         return result.toString();
     }
