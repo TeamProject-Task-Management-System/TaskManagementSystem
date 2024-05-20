@@ -1,5 +1,8 @@
 package com.company.oop.teamProject.core;
 
+import com.company.oop.teamProject.command.CreateBoardCommand;
+import com.company.oop.teamProject.command.CreateMemberCommand;
+import com.company.oop.teamProject.command.CreateTeamCommand;
 import com.company.oop.teamProject.command.contracts.Command;
 import com.company.oop.teamProject.command.contracts.enums.CommandType;
 import com.company.oop.teamProject.core.contracts.CommandFactory;
@@ -12,6 +15,12 @@ public class CommandFactoryImpl implements CommandFactory {
         CommandType commandType = ParsingHelpers.tryParseEnum(commandTypeAsString, CommandType.class);
 
         switch (commandType) {
+            case CREATEMEMBER:
+                return new CreateMemberCommand(taskManagementRepository);
+            case CREATETEAM:
+                return new CreateTeamCommand(taskManagementRepository);
+            case CREATEBOARD:
+                return new CreateBoardCommand(taskManagementRepository);
             default:
                 throw new IllegalArgumentException();
         }

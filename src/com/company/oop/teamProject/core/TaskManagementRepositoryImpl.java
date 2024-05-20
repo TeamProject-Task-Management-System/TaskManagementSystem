@@ -22,9 +22,8 @@ import java.util.List;
 
 public class TaskManagementRepositoryImpl implements TaskManagementRepository{
 
-    private static final String TEAM_CREATED_SUCC = "Team with name %s crated.";
-    private static final String MEMBER_CREATED_SUCC = "Member with name %s created.";
-    private static final String BOARD_CREATED_SUCC = "Board with name %s created.";
+
+
     private static final String MEMBER_ADDED_TO_TEAM_SUCC = "%s has been added to %s.";
     private static final String BUG_CREATED = "Bug with name %s created.";
     private static final String STORY_CREATED = "Story with name %s created.";
@@ -55,7 +54,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
         if (teams.contains(name)) {
             throw new IllegalArgumentException(String.format("Name %s already exist", name));
         }
-        System.out.println(String.format(TEAM_CREATED_SUCC,name));
         return new TeamImpl(name);
     }
 
@@ -64,7 +62,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
         if (members.contains(name)) {
             throw new IllegalArgumentException(String.format("Name %s already exist", name));
         }
-        System.out.println(String.format(MEMBER_CREATED_SUCC,name));
         return new MemberImpl(name);
     }
 
@@ -82,7 +79,6 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
         if (boards.contains(name)) {
             throw new IllegalArgumentException(String.format("Board with name %s already exist", name));
         }
-        System.out.println(String.format(BOARD_CREATED_SUCC,name));
         return new BoardImpl(name);
     }
 
