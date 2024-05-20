@@ -95,22 +95,42 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
 
     @Override
     public Member getMemberByName(String memberName) {
-        return null;
+        for(Member member : members){
+            if(member.getName().equals(memberName)){
+                return member;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is not member with name %s", memberName));
     }
 
     @Override
     public Team getTeamByName(String teamName) {
-        return null;
+        for(Team team : teams){
+            if(team.getName().equals(teamName)){
+                return team;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is not team with name %s", teamName));
     }
 
     @Override
     public Board getBoardByName(String name) {
-        return null;
+        for(Board board : boards){
+            if(board.getName().equals(name)){
+                return board;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is not board with name %s", name));
     }
 
     @Override
     public Bug getBugByID(int bugID) {
-        return null;
+        for (Bug bug : bugs){
+            if(bug.getId() == bugID){
+                return bug;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is no bug with id: %d", bugID));
     }
 
     @Override
