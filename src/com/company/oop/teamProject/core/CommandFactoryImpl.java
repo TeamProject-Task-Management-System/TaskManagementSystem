@@ -1,6 +1,7 @@
 package com.company.oop.teamProject.core;
 
 import com.company.oop.teamProject.command.CreateBoardCommand;
+import com.company.oop.teamProject.command.CreateBugCommand;
 import com.company.oop.teamProject.command.CreateMemberCommand;
 import com.company.oop.teamProject.command.CreateTeamCommand;
 import com.company.oop.teamProject.command.contracts.Command;
@@ -21,6 +22,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new CreateTeamCommand(taskManagementRepository);
             case CREATEBOARD:
                 return new CreateBoardCommand(taskManagementRepository);
+            case CREATEBUG:
+                return new CreateBugCommand(taskManagementRepository);
             default:
                 throw new IllegalArgumentException();
         }

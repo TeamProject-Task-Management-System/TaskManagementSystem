@@ -84,7 +84,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     @Override
     public Bug createNewBug(String title, String description, Member assignee, Priority priority,
                             Severity severity) {
-        System.out.println(String.format(BUG_CREATED, title));
+
         return new BugImpl(++nextId, title, description, assignee, priority, severity);
     }
 
