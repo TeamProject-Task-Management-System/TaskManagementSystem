@@ -22,6 +22,15 @@ import java.util.List;
 
 public class TaskManagementRepositoryImpl implements TaskManagementRepository{
 
+    private static final String TEAM_CREATED_SUCC = "Team with name %s crated.";
+    private static final String MEMBER_CREATED_SUCC = "Member with name %s created.";
+    private static final String BOARD_CREATED_SUCC = "Board with name %s created.";
+    private static final String MEMBER_ADDED_TO_TEAM_SUCC = "%s has been added to %s.";
+    private static final String BUG_CREATED = "Bug with name %s created.";
+    private static final String STORY_CREATED = "Story with name %s created.";
+    private static final String FEEDBACK_CREATED = "Feedback with name %s created.";
+    private static final String COMMENT_CREATED = "Created comment with author %s.";
+
     private final List<Member> members;
     private final List<Board> boards;
     private final List<Team> teams;
@@ -46,6 +55,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
         if (teams.contains(name)) {
             throw new IllegalArgumentException(String.format("Name %s already exist", name));
         }
+        System.out.println(String.format(TEAM_CREATED_SUCC,name));
         return new TeamImpl(name);
     }
 
@@ -54,6 +64,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
         if (members.contains(name)) {
             throw new IllegalArgumentException(String.format("Name %s already exist", name));
         }
+        System.out.println(String.format(MEMBER_CREATED_SUCC,name));
         return new MemberImpl(name);
     }
 
@@ -63,6 +74,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
             throw new IllegalArgumentException(String.format("This member %s already exist in %s!", memberToAdd, team));
         }
         team.addMemberToTeam(memberToAdd);
+        System.out.println(String.format(MEMBER_ADDED_TO_TEAM_SUCC,memberToAdd,team));
     }
 
     @Override
@@ -70,26 +82,33 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
         if (boards.contains(name)) {
             throw new IllegalArgumentException(String.format("Board with name %s already exist", name));
         }
+        System.out.println(String.format(BOARD_CREATED_SUCC,name));
         return new BoardImpl(name);
     }
 
     @Override
-    public Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity) {
+    public Bug createNewBug(String title, String description, Member assignee, Priority priority,
+                            Severity severity) {
+        System.out.println(String.format(BUG_CREATED,title));
         return new BugImpl(++nextId, title, description, assignee, priority, severity);
     }
 
     @Override
-    public Story createNewStory(int id, String title, String description, Member assignee, Priority priority, Size size) {
+    public Story createNewStory(int id, String title, String description, Member assignee, Priority priority,
+                                Size size) {
+        System.out.println(String.format(STORY_CREATED,title));
         return new StoryImpl(++nextId, title, description, assignee, priority, size);
     }
 
     @Override
     public Feedback createNewFeedback(int id, String title, String description, int rating) {
+        System.out.println(String.format(FEEDBACK_CREATED,title));
         return new FeedbackImpl(++nextId, title, description, rating);
     }
 
     @Override
     public Comment createComment(String author, String description) {
+        System.out.println(String.format(COMMENT_CREATED,author));
         return new CommentImpl(author, description);
     }
 
@@ -186,6 +205,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository{
         for(Board board : boards){
             result.append(board.toString()).append("\n");
         }
+
         return result.toString();
     }
 
