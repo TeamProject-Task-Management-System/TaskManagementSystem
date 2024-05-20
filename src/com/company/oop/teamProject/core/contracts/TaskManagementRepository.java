@@ -48,8 +48,6 @@ public interface TaskManagementRepository {
 
     public List<Member> getMembers();
 
-    public List<Board> getBoards();
-
     public List<Team> getTeams();
 
     public List<Bug> getBugs();

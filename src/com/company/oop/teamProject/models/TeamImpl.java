@@ -16,19 +16,20 @@ public class TeamImpl implements Team {
 
     private String name;
 
-    private final List<Member> teamMembers = new ArrayList<>();
-    private final List<Board> teamBoards = new ArrayList<>();
+    private final List<Member> teamMembers;
+    private final List<Board> teamBoards;
     private final List<EventLog> eventLogs = new ArrayList<>();
 
     public TeamImpl(String name) {
         setName(name);
+        this.teamMembers = new ArrayList<>();
+        this.teamBoards = new ArrayList<>();
     }
 
     private void setName(String name) {
         ValidationHelper.validateIntRange(name.length(), TEAM_NAME_MIN_LENGTH,
                 TEAM_NAME_MAX_LENGTH, TEAM_NAME_ERR_MESSAGE);
         this.name = name;
-
     }
 
     public String getName() {

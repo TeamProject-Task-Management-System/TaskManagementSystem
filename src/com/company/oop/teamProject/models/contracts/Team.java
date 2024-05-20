@@ -8,7 +8,7 @@ public interface Team {
 
     List<Member> getTeamMembers();
 
-    List<Board> getTeamBoards();
+    public List<Board> getTeamBoards();
 
     List<EventLog> getHistory();
 
