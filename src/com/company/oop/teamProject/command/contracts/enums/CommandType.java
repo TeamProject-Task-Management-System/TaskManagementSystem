@@ -20,4 +20,5 @@ public enum CommandType {
     ASSIGNSTORY,
     UNASSIGNSTORY,
     CHANGEBUGSTATUS,
+    CHANGEBUGSEVERITY,
 }

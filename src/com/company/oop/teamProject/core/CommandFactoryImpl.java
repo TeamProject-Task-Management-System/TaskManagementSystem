@@ -49,6 +49,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ChangeBugStatusCommand(taskManagementRepository);
             case CHANGESTORYSIZE:
                 return new ChangeStorySizeCommand(taskManagementRepository);
+            case CHANGEBUGSEVERITY:
+                return new ChangeBugSeverityCommand(taskManagementRepository);
             default:
                 throw new IllegalArgumentException();
         }
