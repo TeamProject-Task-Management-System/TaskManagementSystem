@@ -22,6 +22,7 @@ public class BugImpl extends Content implements Bug {
 
     private int id;
     private Severity severity;
+    private Priority priority;
     private final List<String> steps = new ArrayList<>();
     private EnumsForBugStatus status;
     private List<Bug> bugs;
@@ -31,6 +32,7 @@ public class BugImpl extends Content implements Bug {
         this.id = id;
         this.status = EnumsForBugStatus.ACTIVE;
         this.severity = severity;
+        this.priority = priority;
         this.bugs = new ArrayList<>();
     }
 
@@ -81,8 +83,19 @@ public class BugImpl extends Content implements Bug {
         }
         Severity previousSeverity = this.severity;
         this.severity = newSeverity;
-        createNewEvent(String.format("Severity status changed from %s to %s", previousSeverity, severity));
+        createNewEvent(String.format("Bug's severity changed from %s to %s", previousSeverity, severity));
     }
+
+    @Override
+    public void changePriority(Priority priority) {
+        if (priority == this.priority){
+            throw new IllegalArgumentException(String.format("Priority is already %s", priority));
+        }
+        Priority previousPriority = this.priority;
+        this.priority = priority;
+        createNewEvent(String.format("Bug's priority changed from %s to %s", previousPriority, priority));
+    }
+
 
     @Override
     public Severity getSeverity() {
