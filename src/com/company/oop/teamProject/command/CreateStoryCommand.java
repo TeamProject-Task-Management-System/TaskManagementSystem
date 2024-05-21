@@ -32,6 +32,6 @@ public class CreateStoryCommand extends BaseCommand{
         Size size = ParsingHelpers.tryParseEnum(parameters.get(4), Size.class);
 
         Story story = getTaskManagementRepository().createNewStory(title, description, assignee, priority, size);
-        return String.format(STORY_CREATED, story);
+        return String.format(STORY_CREATED, story.getTitle());
     }
 }

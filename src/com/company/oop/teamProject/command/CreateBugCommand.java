@@ -29,6 +29,6 @@ public class CreateBugCommand extends BaseCommand {
         Severity severity = ParsingHelpers.tryParseEnum(parameters.get(4), Severity.class);
 
         Bug bug = getTaskManagementRepository().createNewBug(title, description, assignee, priority, severity);
-        return String.format(BUG_CREATED, bug);
+        return String.format(BUG_CREATED, bug.getTitle());
     }
 }

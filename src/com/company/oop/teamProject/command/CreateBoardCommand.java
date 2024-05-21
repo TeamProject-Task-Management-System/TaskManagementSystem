@@ -25,6 +25,6 @@ public class CreateBoardCommand extends BaseCommand{
         String name = parameters.get(0);
         Board board = getTaskManagementRepository().createNewBoard(name);
 
-        return String.format(BOARD_CREATED_SUCC, board);
+        return String.format(BOARD_CREATED_SUCC, board.getName());
     }
 }

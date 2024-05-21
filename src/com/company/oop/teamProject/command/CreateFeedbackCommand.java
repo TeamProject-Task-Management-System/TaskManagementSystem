@@ -24,6 +24,6 @@ public class CreateFeedbackCommand extends BaseCommand{
         int rating = ParsingHelpers.tryParseInt(parameters.get(2), "Can not be parsed to int");
 
         Feedback feedback = getTaskManagementRepository().createNewFeedback(title, description, rating);
-        return String.format(FEEDBACK_CREATED, feedback);
+        return String.format(FEEDBACK_CREATED, feedback.getTitle());
     }
 }

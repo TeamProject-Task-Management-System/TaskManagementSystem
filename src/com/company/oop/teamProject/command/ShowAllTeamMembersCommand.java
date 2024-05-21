@@ -1,7 +1,6 @@
 package com.company.oop.teamProject.command;
 
 import com.company.oop.teamProject.core.contracts.TaskManagementRepository;
-import com.company.oop.teamProject.models.contracts.Team;
 import com.company.oop.teamProject.utils.ValidationHelper;
 
 import java.util.List;
