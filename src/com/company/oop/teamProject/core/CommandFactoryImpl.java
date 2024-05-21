@@ -45,10 +45,14 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new UnassignBugCommand(taskManagementRepository);
             case UNASSIGNSTORY:
                 return new UnassignStoryCommand(taskManagementRepository);
-            case CHANGEBUGSTATUS:
-                return new ChangeBugStatusCommand(taskManagementRepository);
             case CHANGESTORYSIZE:
                 return new ChangeStorySizeCommand(taskManagementRepository);
+            case CHANGEBUGSTATUS:
+                return new ChangeBugStatusCommand(taskManagementRepository);
+            case CHANGESTORYSTATUS:
+                return new ChangeStoryStatusCommand(taskManagementRepository);
+            case CHANGEFEEDBACKSTATUS:
+                return new ChangeFeedbackStatusCommand(taskManagementRepository);
             case CHANGEBUGSEVERITY:
                 return new ChangeBugSeverityCommand(taskManagementRepository);
             default:

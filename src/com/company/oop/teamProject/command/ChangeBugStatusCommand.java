@@ -20,10 +20,10 @@ public class ChangeBugStatusCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        Bug title = getTaskManagementRepository().getBugByTitle(parameters.get(0));
+        Bug bug = getTaskManagementRepository().getBugByTitle(parameters.get(0));
         EnumsForBugStatus status = ParsingHelpers.tryParseEnum(parameters.get(1), EnumsForBugStatus.class);
 
-        title.changeBugStatus(status);
-        return String.format(BUG_STATUS_CHANGED, title, status);
+        bug.changeBugStatus(status);
+        return String.format(BUG_STATUS_CHANGED, bug.getTitle(), status);
     }
 }
