@@ -1,6 +1,5 @@
 package com.company.oop.teamProject.models.tasks;
 
-import com.company.oop.teamProject.models.contracts.Member;
 import com.company.oop.teamProject.models.tasks.contracts.Bug;
 import com.company.oop.teamProject.models.tasks.enums.EnumsForBugStatus;
 import com.company.oop.teamProject.models.tasks.enums.Priority;
