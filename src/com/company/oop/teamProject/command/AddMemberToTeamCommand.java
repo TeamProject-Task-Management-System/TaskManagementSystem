@@ -23,6 +23,6 @@ public class AddMemberToTeamCommand extends BaseCommand {
         Team team = getTaskManagementRepository().getTeamByName(parameters.get(1));
 
         getTaskManagementRepository().addMemberToTeam(member, team);
-        return String.format(MEMBER_ADDED_TO_TEAM_SUCC, member);
+        return String.format(MEMBER_ADDED_TO_TEAM_SUCC, member, team);
     }
 }
