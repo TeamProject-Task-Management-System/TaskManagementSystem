@@ -32,11 +32,11 @@ public interface TaskManagementRepository {
 
     Board getBoardByName(String name);
 
-    Bug getBugByID(int bugID);
+    Bug getBugByTitle(String title);
 
-    Story getStoryByID(int iD);
+    Story getStoryByTitle(String title);
 
-    Feedback getFeedbackByID(int iD);
+    Feedback getFeedbackByTitle(String title);
 
     String showAllMembers();
 

@@ -146,33 +146,33 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public Bug getBugByID(int bugID) {
+    public Bug getBugByTitle(String title) {
         for (Bug bug : bugs) {
-            if (bug.getId() == bugID) {
+            if (bug.getTitle().equals(title)){
                 return bug;
             }
         }
-        throw new IllegalArgumentException(String.format("There is no bug with id: %d", bugID));
+        throw new IllegalArgumentException(String.format("There is no bug with title: %s", title));
     }
 
     @Override
-    public Story getStoryByID(int iD) {
+    public Story getStoryByTitle(String title) {
         for (Story story : stories) {
-            if (story.getId() == iD) {
+            if (story.getTitle().equals(title)) {
                 return story;
             }
         }
-        throw new IllegalArgumentException(String.format("There is no story with id: %d", iD));
+        throw new IllegalArgumentException(String.format("There is no story with title: %s", title));
     }
 
     @Override
-    public Feedback getFeedbackByID(int iD) {
+    public Feedback getFeedbackByTitle(String title) {
         for (Feedback feedback : feedbacks) {
-            if (feedback.getId() == iD) {
+            if (feedback.getTitle().equals(title)) {
                 return feedback;
             }
         }
-        throw new IllegalArgumentException(String.format("There is no feedback with id: %d", iD));
+        throw new IllegalArgumentException(String.format("There is no feedback with title: %s", title));
     }
 
     @Override
