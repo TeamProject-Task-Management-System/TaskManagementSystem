@@ -39,10 +39,12 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowAllTeamMembersCommand(taskManagementRepository);
             case ASSIGNBUG:
                 return new AssignBugCommand(taskManagementRepository);
-            case UNASSIGNBUG:
-                return new UnassignBugCommand(taskManagementRepository);
             case ASSIGNSTORY:
                 return new AssignStoryCommand(taskManagementRepository);
+            case UNASSIGNBUG:
+                return new UnassignBugCommand(taskManagementRepository);
+            case UNASSIGNSTORY:
+                return new UnassignStoryCommand(taskManagementRepository);
             case CHANGEBUGSTATUS:
                 return new ChangeBugStatusCommand(taskManagementRepository);
             case CHANGESTORYSIZE:
