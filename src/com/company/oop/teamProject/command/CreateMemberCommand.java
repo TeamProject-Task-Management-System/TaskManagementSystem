@@ -10,7 +10,7 @@ import java.util.List;
 public class CreateMemberCommand extends BaseCommand {
 
     private static final String MEMBER_CREATED_SUCC = "Member with name %s created.";
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
 
     public CreateMemberCommand(TaskManagementRepository taskManagementRepository) {
         super(taskManagementRepository);

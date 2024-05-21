@@ -80,17 +80,17 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public Bug createNewBug(String title, String description, Member assignee, Priority priority,
+    public Bug createNewBug(String title, String description, Priority priority,
                             Severity severity) {
-        Bug bug = new BugImpl(++nextId, title, description, assignee, priority, severity);
+        Bug bug = new BugImpl(++nextId, title, description, priority, severity);
         bugs.add(bug);
         return bug;
     }
 
     @Override
-    public Story createNewStory(String title, String description, Member assignee, Priority priority,
+    public Story createNewStory(String title, String description, Priority priority,
                                 Size size) {
-        Story story = new StoryImpl(++nextId, title, description, assignee, priority, size);
+        Story story = new StoryImpl(++nextId, title, description, priority, size);
         stories.add(story);
         return story;
     }

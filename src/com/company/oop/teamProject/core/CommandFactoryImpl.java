@@ -21,6 +21,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new CreateBoardCommand(taskManagementRepository);
             case CREATEBUG:
                 return new CreateBugCommand(taskManagementRepository);
+            case CREATESTORY:
+                return new CreateStoryCommand(taskManagementRepository);
             case CREATEFEEDBACK:
                 return new CreateFeedbackCommand(taskManagementRepository);
             case CREATECOMMENT:
@@ -37,10 +39,14 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowAllTeamMembersCommand(taskManagementRepository);
             case ASSIGNBUG:
                 return new AssignBugCommand(taskManagementRepository);
-            case ASSIGNSTORY:
-                return new AssignStoryCommand(taskManagementRepository);
             case UNASSIGNBUG:
                 return new UnassignBugCommand(taskManagementRepository);
+            case ASSIGNSTORY:
+                return new AssignStoryCommand(taskManagementRepository);
+            case CHANGEBUGSTATUS:
+                return new ChangeBugStatusCommand(taskManagementRepository);
+            case CHANGESTORYSIZE:
+                return new ChangeStorySizeCommand(taskManagementRepository);
             default:
                 throw new IllegalArgumentException();
         }

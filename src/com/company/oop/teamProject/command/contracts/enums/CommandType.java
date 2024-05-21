@@ -6,6 +6,7 @@ public enum CommandType {
     CREATETEAM,
     CREATEBOARD,
     CREATEBUG,
+    CREATESTORY,
     CREATEFEEDBACK,
     CREATECOMMENT,
     ADDMEMBERTOTEAM,
@@ -17,4 +18,5 @@ public enum CommandType {
     ASSIGNBUG,
     ASSIGNSTORY,
     UNASSIGNBUG,
+    CHANGEBUGSTATUS,
 }

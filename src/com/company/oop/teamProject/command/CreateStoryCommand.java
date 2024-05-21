@@ -14,10 +14,10 @@ import java.util.List;
 
 public class CreateStoryCommand extends BaseCommand{
 
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 5;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 5;
     private static final String STORY_CREATED = "Story with name %s created.";
 
-    protected CreateStoryCommand(TaskManagementRepository taskManagementRepository) {
+    public CreateStoryCommand(TaskManagementRepository taskManagementRepository) {
         super(taskManagementRepository);
     }
 
@@ -27,11 +27,10 @@ public class CreateStoryCommand extends BaseCommand{
 
         String title = parameters.get(0);
         String description = parameters.get(1);
-        Member assignee = getTaskManagementRepository().getMemberByName(parameters.get(2));
-        Priority priority = ParsingHelpers.tryParseEnum(parameters.get(3), Priority.class);
-        Size size = ParsingHelpers.tryParseEnum(parameters.get(4), Size.class);
+        Priority priority = ParsingHelpers.tryParseEnum(parameters.get(2), Priority.class);
+        Size size = ParsingHelpers.tryParseEnum(parameters.get(3), Size.class);
 
-        Story story = getTaskManagementRepository().createNewStory(title, description, assignee, priority, size);
+        Story story = getTaskManagementRepository().createNewStory(title, description, priority, size);
         return String.format(STORY_CREATED, story.getTitle());
     }
 }

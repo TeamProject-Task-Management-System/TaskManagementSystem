@@ -20,8 +20,8 @@ public class StoryImpl extends Content implements Story {
     private Size size;
     private EnumsForStoryStatus status;
 
-    public StoryImpl(int id, String title, String description, Member assignee, Priority priority, Size size) {
-        super(title, description, assignee, priority);
+    public StoryImpl(int id, String title, String description, Priority priority, Size size) {
+        super(title, description, priority);
         this.id = id;
         this.status = EnumsForStoryStatus.NOT_DONE;
         this.size = size;

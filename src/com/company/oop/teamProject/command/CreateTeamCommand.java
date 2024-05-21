@@ -12,7 +12,7 @@ import java.util.List;
 public class CreateTeamCommand extends BaseCommand{
 
     private static final String TEAM_CREATED_SUCC = "Team with name %s crated.";
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
 
     public CreateTeamCommand(TaskManagementRepository taskManagementRepository) {
         super(taskManagementRepository);

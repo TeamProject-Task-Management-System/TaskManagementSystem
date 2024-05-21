@@ -26,8 +26,8 @@ public class BugImpl extends Content implements Bug {
     private EnumsForBugStatus status;
     private List<Bug> bugs;
 
-    public BugImpl(int id, String title, String description, Member assignee, Priority priority, Severity severity) {
-        super(title, description, assignee, priority);
+    public BugImpl(int id, String title, String description, Priority priority, Severity severity) {
+        super(title, description, priority);
         this.id = id;
         this.status = EnumsForBugStatus.ACTIVE;
         this.severity = severity;

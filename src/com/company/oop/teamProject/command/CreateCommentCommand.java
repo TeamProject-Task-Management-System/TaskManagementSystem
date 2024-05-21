@@ -7,7 +7,7 @@ import com.company.oop.teamProject.utils.ValidationHelper;
 import java.util.List;
 
 public class CreateCommentCommand extends BaseCommand {
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private static final String COMMENT_CREATED = "Created comment with author %s.";
 
     public CreateCommentCommand(TaskManagementRepository taskManagementRepository) {

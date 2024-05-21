@@ -12,7 +12,7 @@ import java.util.List;
 public class CreateBoardCommand extends BaseCommand{
 
     private static final String BOARD_CREATED_SUCC = "Board with name %s created.";
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
 
     public CreateBoardCommand(TaskManagementRepository taskManagementRepository) {
         super(taskManagementRepository);

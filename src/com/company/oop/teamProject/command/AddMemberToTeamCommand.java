@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AddMemberToTeamCommand extends BaseCommand {
 
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private static final String MEMBER_ADDED_TO_TEAM_SUCC = "Member %s has been added to team %s.";
 
     public AddMemberToTeamCommand(TaskManagementRepository taskManagementRepository) {

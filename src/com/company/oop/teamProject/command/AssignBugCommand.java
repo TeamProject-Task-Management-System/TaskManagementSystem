@@ -13,7 +13,7 @@ import java.util.List;
 
 public class AssignBugCommand extends BaseCommand{
 
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private static final String MEMBER_HAVE_ADDED_ASSIGN = "Bug %s assigned to member %s.";
 
     public AssignBugCommand(TaskManagementRepository taskManagementRepository) {

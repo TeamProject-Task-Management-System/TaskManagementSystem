@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CreateFeedbackCommand extends BaseCommand{
 
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 3;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 3;
     private static final String FEEDBACK_CREATED = "Feedback with name %s created.";
 
     public CreateFeedbackCommand(TaskManagementRepository taskManagementRepository) {

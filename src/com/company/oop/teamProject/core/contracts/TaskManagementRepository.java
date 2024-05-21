@@ -18,9 +18,9 @@ public interface TaskManagementRepository {
 
     Board createNewBoard(String name, Team team);
 
-    Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity);
+    Bug createNewBug(String title, String description, Priority priority, Severity severity);
 
-    Story createNewStory(String title, String description, Member assignee, Priority priority, Size size);
+    Story createNewStory(String title, String description, Priority priority, Size size);
 
     Feedback createNewFeedback(String title, String description, int rating);
 
