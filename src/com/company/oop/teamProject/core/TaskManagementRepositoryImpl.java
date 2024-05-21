@@ -231,6 +231,19 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
 
+    public void assignStory(Story story, Member member){
+        member.assignTask(story);
+    }
+
+    public void unassignBug(Bug bug, Member member){
+        member.unassignTask(bug);
+    }
+
+    public void unassignStory(Story story, Member member){
+        member.unassignTask(story);
+    }
+
+
     public List<Member> getMembers() {
         return new ArrayList<>(members);
     }

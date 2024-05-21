@@ -15,4 +15,6 @@ public enum CommandType {
     SHOWALLTEAMMEMBERS,
     CHANGESTORYSIZE,
     ASSIGNBUG,
+    ASSIGNSTORY,
+    UNASSIGNBUG,
 }
