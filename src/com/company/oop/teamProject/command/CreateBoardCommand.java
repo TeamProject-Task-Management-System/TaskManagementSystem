@@ -12,7 +12,7 @@ import java.util.List;
 public class CreateBoardCommand extends BaseCommand{
 
     private static final String BOARD_CREATED_SUCC = "Board with name %s created.";
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
 
     public CreateBoardCommand(TaskManagementRepository taskManagementRepository) {
         super(taskManagementRepository);
@@ -23,7 +23,8 @@ public class CreateBoardCommand extends BaseCommand{
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
 
         String name = parameters.get(0);
-        Board board = getTaskManagementRepository().createNewBoard(name);
+        Team team = getTaskManagementRepository().getTeamByName(parameters.get(1));
+        Board board = getTaskManagementRepository().createNewBoard(name, team);
 
         return String.format(BOARD_CREATED_SUCC, board.getName());
     }

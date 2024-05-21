@@ -10,7 +10,7 @@ import java.util.List;
 public class AddMemberToTeamCommand extends BaseCommand {
 
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
-    private static final String MEMBER_ADDED_TO_TEAM_SUCC = "%s has been added to %s.";
+    private static final String MEMBER_ADDED_TO_TEAM_SUCC = "Member %s has been added to team %s.";
 
     public AddMemberToTeamCommand(TaskManagementRepository taskManagementRepository) {
         super(taskManagementRepository);
@@ -23,6 +23,6 @@ public class AddMemberToTeamCommand extends BaseCommand {
         Team team = getTaskManagementRepository().getTeamByName(parameters.get(1));
 
         getTaskManagementRepository().addMemberToTeam(member, team);
-        return String.format(MEMBER_ADDED_TO_TEAM_SUCC, member, team);
+        return String.format(MEMBER_ADDED_TO_TEAM_SUCC, member.getName(), team.getName());
     }
 }

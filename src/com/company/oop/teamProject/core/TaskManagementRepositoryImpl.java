@@ -74,33 +74,38 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public Board createNewBoard(String name) {
-        for (Team team : teams) {
-            for (Board teamBoard : team.getTeamBoards()) {
-                if (teamBoard.getName().equals(name)) {
-                    throw new IllegalArgumentException(String.format("Board with name %s already exist", name));
-                }
+    public Board createNewBoard(String name, Team team) {
+        for (Board teamBoard : team.getTeamBoards()) {
+            if (teamBoard.getName().equals(name)) {
+                throw new IllegalArgumentException(String.format("Board with name %s already exist", name));
             }
         }
-        return new BoardImpl(name);
+        Board board = new BoardImpl(name);
+        team.addBoardToTeam(board);
+        return board;
     }
 
     @Override
     public Bug createNewBug(String title, String description, Member assignee, Priority priority,
                             Severity severity) {
-
-        return new BugImpl(++nextId, title, description, assignee, priority, severity);
+        Bug bug = new BugImpl(++nextId, title, description, assignee, priority, severity);
+        bugs.add(bug);
+        return bug;
     }
 
     @Override
     public Story createNewStory(String title, String description, Member assignee, Priority priority,
                                 Size size) {
-        return new StoryImpl(++nextId, title, description, assignee, priority, size);
+        Story story = new StoryImpl(++nextId, title, description, assignee, priority, size);
+        stories.add(story);
+        return story;
     }
 
     @Override
     public Feedback createNewFeedback(String title, String description, int rating) {
-        return new FeedbackImpl(++nextId, title, description, rating);
+        Feedback feedback = new FeedbackImpl(++nextId, title, description, rating);
+        feedbacks.add(feedback);
+        return feedback;
     }
 
     @Override
@@ -204,12 +209,12 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
                 System.out.printf("Team %s does not have any boards.", team);
                 continue;
             }
-            result.append("Team ").append(team).append("'s boards:").append(System.lineSeparator());
+            result.append("Team ").append(team.getName()).append("'s boards:").append(System.lineSeparator());
             for (Board teamBoard : team.getTeamBoards()) {
                 result.append(teamBoard.getName()).append(System.lineSeparator());
             }
         }
-        return result.toString();
+        return result.toString().trim();
     }
 
     @Override
@@ -217,11 +222,11 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         StringBuilder result = new StringBuilder();
         for (Team team : teams) {
             if (team.getName().equalsIgnoreCase(teamName)) {
-                result.append("Team ").append(team).append("'s members:").append(System.lineSeparator());
+                result.append("Team ").append(team.getName()).append("'s members:").append(System.lineSeparator());
                 for (Member member : team.getTeamMembers()) {
                     result.append(member.getName()).append("\n");
                 }
-                return result.toString();
+                return result.toString().trim();
             }
         }
         throw new IllegalArgumentException(String.format("There is no team with name %s!", teamName));

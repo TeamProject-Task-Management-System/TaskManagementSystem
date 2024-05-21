@@ -16,7 +16,7 @@ public interface TaskManagementRepository {
 
     void addMemberToTeam(Member memberToAdd, Team team);
 
-    Board createNewBoard(String name);
+    Board createNewBoard(String name, Team team);
 
     Bug createNewBug(String title, String description, Member assignee, Priority priority, Severity severity);
 
