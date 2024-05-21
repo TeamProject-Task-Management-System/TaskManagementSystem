@@ -23,7 +23,7 @@ public class CreateBoardCommand extends BaseCommand{
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
 
         String name = parameters.get(0);
-        Board board = new BoardImpl(name);
+        Board board = getTaskManagementRepository().createNewBoard(name);
 
         return String.format(BOARD_CREATED_SUCC, board);
     }

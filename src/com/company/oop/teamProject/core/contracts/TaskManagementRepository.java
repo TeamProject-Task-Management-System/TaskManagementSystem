@@ -38,9 +38,9 @@ public interface TaskManagementRepository {
 
     Feedback getFeedbackByID(int iD);
 
-    String showAllMembers(List<Member> members);
+    String showAllMembers();
 
-    String showAllTeams(List<Team> teams);
+    String showAllTeams();
 
     String showAllBoards();
 

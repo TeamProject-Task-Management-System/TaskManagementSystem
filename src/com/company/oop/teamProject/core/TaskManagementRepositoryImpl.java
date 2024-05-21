@@ -15,16 +15,14 @@ import com.company.oop.teamProject.models.tasks.StoryImpl;
 import com.company.oop.teamProject.models.tasks.contracts.Bug;
 import com.company.oop.teamProject.models.tasks.contracts.Feedback;
 import com.company.oop.teamProject.models.tasks.contracts.Story;
-import com.company.oop.teamProject.models.tasks.enums.*;
+import com.company.oop.teamProject.models.tasks.enums.Priority;
+import com.company.oop.teamProject.models.tasks.enums.Severity;
+import com.company.oop.teamProject.models.tasks.enums.Size;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskManagementRepositoryImpl implements TaskManagementRepository {
-
-
-    private static final String MEMBER_ADDED_TO_TEAM_SUCC = "%s has been added to %s.";
-
 
     private final List<Member> members;
     private final List<Team> teams;
@@ -45,18 +43,26 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     @Override
     public Team createNewTeam(String name) {
-        if (teams.contains(name)) {
-            throw new IllegalArgumentException(String.format("Name %s already exist", name));
+        for (Team team : teams) {
+            if (team.getName().equals(name)) {
+                throw new IllegalArgumentException(String.format("Name %s already exist", name));
+            }
         }
-        return new TeamImpl(name);
+        Team team = new TeamImpl(name);
+        teams.add(team);
+        return team;
     }
 
     @Override
     public Member createNewMember(String name) {
-        if (members.contains(name)) {
-            throw new IllegalArgumentException(String.format("Name %s already exist", name));
+        for (Member member : members) {
+            if (member.getName().equals(name)) {
+                throw new IllegalArgumentException(String.format("Name %s already exist", name));
+            }
         }
-        return new MemberImpl(name);
+        Member member = new MemberImpl(name);
+        members.add(member);
+        return member;
     }
 
     @Override
@@ -65,14 +71,15 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
             throw new IllegalArgumentException(String.format("This member %s already exist in %s!", memberToAdd, team));
         }
         team.addMemberToTeam(memberToAdd);
-        System.out.println(String.format(MEMBER_ADDED_TO_TEAM_SUCC, memberToAdd, team));
     }
 
     @Override
     public Board createNewBoard(String name) {
         for (Team team : teams) {
-            if (team.getTeamBoards().contains(name)) {
-                throw new IllegalArgumentException(String.format("Board with name %s already exist", name));
+            for (Board teamBoard : team.getTeamBoards()) {
+                if (teamBoard.getName().equals(name)) {
+                    throw new IllegalArgumentException(String.format("Board with name %s already exist", name));
+                }
             }
         }
         return new BoardImpl(name);
@@ -125,7 +132,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public Board getBoardByName(String name) {
         for (Team team : teams) {
             for (Board teamBoard : team.getTeamBoards()) {
-                if (teamBoard.equals(name)) {
+                if (teamBoard.getName().equals(name)) {
                     return teamBoard;
                 }
             }
@@ -164,19 +171,29 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public String showAllMembers(List<Member> members) {
+    public String showAllMembers() {
         if (members.isEmpty()) {
             throw new IllegalArgumentException("There are no members!");
         }
-        return showLists(members);
+        StringBuilder result = new StringBuilder();
+        result.append("Members").append(":").append(System.lineSeparator());
+        for (Member member : members) {
+            result.append(member.getName()).append(System.lineSeparator());
+        }
+        return result.toString().trim();
     }
 
     @Override
-    public String showAllTeams(List<Team> teams) {
+    public String showAllTeams() {
         if (teams.isEmpty()) {
             throw new IllegalArgumentException("There are no teams!");
         }
-        return showLists(teams);
+        StringBuilder result = new StringBuilder();
+        result.append("Teams").append(":").append(System.lineSeparator());
+        for (Team team : teams) {
+            result.append(team.getName()).append(System.lineSeparator());
+        }
+        return result.toString().trim();
     }
 
     @Override
@@ -187,8 +204,9 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
                 System.out.printf("Team %s does not have any boards.", team);
                 continue;
             }
+            result.append("Team ").append(team).append("'s boards:").append(System.lineSeparator());
             for (Board teamBoard : team.getTeamBoards()) {
-                result.append(teamBoard).append(System.lineSeparator());
+                result.append(teamBoard.getName()).append(System.lineSeparator());
             }
         }
         return result.toString();
@@ -199,8 +217,9 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         StringBuilder result = new StringBuilder();
         for (Team team : teams) {
             if (team.getName().equalsIgnoreCase(teamName)) {
+                result.append("Team ").append(team).append("'s members:").append(System.lineSeparator());
                 for (Member member : team.getTeamMembers()) {
-                    result.append(member).append("\n");
+                    result.append(member.getName()).append("\n");
                 }
                 return result.toString();
             }
@@ -226,13 +245,5 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     public List<Feedback> getFeedbacks() {
         return new ArrayList<>(feedbacks);
-    }
-
-    private <E> String showLists(List<E> elements) {
-        StringBuilder result = new StringBuilder();
-        for (E element : elements) {
-            result.append(element.toString()).append(System.lineSeparator());
-        }
-        return result.toString();
     }
 }

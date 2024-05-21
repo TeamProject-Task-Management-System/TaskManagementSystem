@@ -21,8 +21,8 @@ public class CreateMemberCommand extends BaseCommand {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
 
         String name = parameters.get(0);
-        Member member = new MemberImpl(name);
+        Member member = getTaskManagementRepository().createNewMember(name);
 
-        return String.format(MEMBER_CREATED_SUCC, member);
+        return String.format(MEMBER_CREATED_SUCC, member.getName());
     }
 }

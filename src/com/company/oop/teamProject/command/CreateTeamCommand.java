@@ -23,8 +23,8 @@ public class CreateTeamCommand extends BaseCommand{
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
 
         String name = parameters.get(0);
-        Team team = new TeamImpl(name);
+        Team team = getTaskManagementRepository().createNewTeam(name);
 
-        return String.format(TEAM_CREATED_SUCC, team);
+        return String.format(TEAM_CREATED_SUCC, team.getName());
     }
 }
