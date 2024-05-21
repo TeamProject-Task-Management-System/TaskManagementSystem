@@ -1,14 +1,8 @@
 package com.company.oop.teamProject.core;
 
 import com.company.oop.teamProject.core.contracts.TaskManagementRepository;
-import com.company.oop.teamProject.models.BoardImpl;
-import com.company.oop.teamProject.models.CommentImpl;
-import com.company.oop.teamProject.models.MemberImpl;
-import com.company.oop.teamProject.models.TeamImpl;
-import com.company.oop.teamProject.models.contracts.Board;
-import com.company.oop.teamProject.models.contracts.Comment;
-import com.company.oop.teamProject.models.contracts.Member;
-import com.company.oop.teamProject.models.contracts.Team;
+import com.company.oop.teamProject.models.*;
+import com.company.oop.teamProject.models.contracts.*;
 import com.company.oop.teamProject.models.tasks.BugImpl;
 import com.company.oop.teamProject.models.tasks.FeedbackImpl;
 import com.company.oop.teamProject.models.tasks.StoryImpl;
@@ -230,6 +224,10 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
             }
         }
         throw new IllegalArgumentException(String.format("There is no team with name %s!", teamName));
+    }
+
+    public void assignBug(Bug bug, Member member){
+        member.assignTask(bug);
     }
 
     public List<Member> getMembers() {

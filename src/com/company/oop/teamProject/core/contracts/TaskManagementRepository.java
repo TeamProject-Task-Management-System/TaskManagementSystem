@@ -55,4 +55,6 @@ public interface TaskManagementRepository {
     public List<Story> getStories();
 
     public List<Feedback> getFeedbacks();
+
+    void assignBug(Bug bug, Member member);
 }

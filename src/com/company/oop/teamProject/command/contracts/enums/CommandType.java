@@ -13,4 +13,5 @@ public enum CommandType {
     SHOWALLTEAMS,
     SHOWALLBOARDS,
     SHOWALLTEAMMEMBERS,
+    ASSIGNBUG,
 }

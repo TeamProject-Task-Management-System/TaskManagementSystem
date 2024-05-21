@@ -35,6 +35,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowAllBoardsCommand(taskManagementRepository);
             case SHOWALLTEAMMEMBERS:
                 return new ShowAllTeamMembersCommand(taskManagementRepository);
+            case ASSIGNBUG:
+                return new AssignBugCommand(taskManagementRepository);
             default:
                 throw new IllegalArgumentException();
         }
