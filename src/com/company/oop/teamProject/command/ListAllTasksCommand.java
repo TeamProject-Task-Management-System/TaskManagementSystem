@@ -5,12 +5,13 @@ import com.company.oop.teamProject.models.contracts.Task;
 import com.company.oop.teamProject.utils.ListingHelper;
 import com.company.oop.teamProject.utils.ValidationHelper;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ListAllTasksCommand extends BaseCommand {
 
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
     private final List<Task> tasks;
 
     public ListAllTasksCommand(TaskManagementRepository taskManagementRepository) {
@@ -30,7 +31,7 @@ public class ListAllTasksCommand extends BaseCommand {
         return tasks
                 .stream()
                 .filter(task -> task.getTitle().contains(name))
-                .sorted()
+                .sorted(Comparator.comparing(task -> task.getTitle()))
                 .collect(Collectors.toList());
     }
 }

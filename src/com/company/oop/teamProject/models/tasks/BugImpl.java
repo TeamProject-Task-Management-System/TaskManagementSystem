@@ -4,7 +4,6 @@ import com.company.oop.teamProject.models.TaskImpl;
 import com.company.oop.teamProject.models.contracts.Member;
 import com.company.oop.teamProject.models.tasks.contracts.Assignable;
 import com.company.oop.teamProject.models.tasks.contracts.Bug;
-import com.company.oop.teamProject.models.tasks.contracts.Prioritizable;
 import com.company.oop.teamProject.models.tasks.enums.EnumsForBugStatus;
 import com.company.oop.teamProject.models.tasks.enums.Priority;
 import com.company.oop.teamProject.models.tasks.enums.Severity;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BugImpl extends TaskImpl implements Bug, Assignable, Prioritizable {
+public class BugImpl extends TaskImpl implements Bug, Assignable {
     public static final int TILE_MIN_LENGTH = 10;
     public static final int TITLE_MAX_LENGTH = 100;
     public static final String TITLE_ERR_MESSAGE = "Title name must be between 10 and 100";
@@ -115,8 +114,12 @@ public class BugImpl extends TaskImpl implements Bug, Assignable, Prioritizable 
         return assignee;
     }
 
+    public EnumsForBugStatus getBugStatus() {
+        return status;
+    }
+
     @Override
-    public Priority getPriority() {
+    public Priority getBugPriority() {
         return priority;
     }
 
@@ -128,6 +131,7 @@ public class BugImpl extends TaskImpl implements Bug, Assignable, Prioritizable 
                 %s
                 Severity: %s
                 Priority: %s
-                Status: %s""".formatted(id, getTitle(), getDescription(), severity, priority, status);
+                Status: %s
+                """.formatted(id, getTitle(), getDescription(), severity, priority, status);
     }
 }

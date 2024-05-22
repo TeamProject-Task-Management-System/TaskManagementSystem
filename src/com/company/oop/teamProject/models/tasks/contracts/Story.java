@@ -19,4 +19,8 @@ public interface Story extends Task, Assignable {
     void setAssignee(Member assignee);
 
     Member getAssignee();
+
+    EnumsForStoryStatus getStoryStatus();
+
+    Priority getStoryPriority();
 }

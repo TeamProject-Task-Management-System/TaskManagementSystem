@@ -3,14 +3,13 @@ package com.company.oop.teamProject.models.tasks;
 import com.company.oop.teamProject.models.TaskImpl;
 import com.company.oop.teamProject.models.contracts.Member;
 import com.company.oop.teamProject.models.tasks.contracts.Assignable;
-import com.company.oop.teamProject.models.tasks.contracts.Prioritizable;
 import com.company.oop.teamProject.models.tasks.contracts.Story;
 import com.company.oop.teamProject.models.tasks.enums.EnumsForStoryStatus;
 import com.company.oop.teamProject.models.tasks.enums.Priority;
 import com.company.oop.teamProject.models.tasks.enums.Size;
 import com.company.oop.teamProject.utils.ValidationHelper;
 
-public class StoryImpl extends TaskImpl implements Story, Assignable, Prioritizable {
+public class StoryImpl extends TaskImpl implements Story, Assignable {
     public static final int TITLE_MIN_LENGTH = 10;
     public static final int TITLE_MAX_LENGTH = 100;
     public static final String TITLE_ERR_MESSAGE = "Title must be between 10 and 100";
@@ -96,8 +95,12 @@ public class StoryImpl extends TaskImpl implements Story, Assignable, Prioritiza
     }
 
     @Override
-    public Priority getPriority() {
+    public Priority getStoryPriority() {
         return priority;
+    }
+
+    public EnumsForStoryStatus getStoryStatus() {
+        return status;
     }
 
     @Override
@@ -108,6 +111,7 @@ public class StoryImpl extends TaskImpl implements Story, Assignable, Prioritiza
                 %s
                 Size: %s
                 Priority: %s
-                Status: %s""".formatted(id, getTitle(), getDescription(), size, priority, status);
+                Status: %s
+                """.formatted(id, getTitle(), getDescription(), size, priority, status);
     }
 }

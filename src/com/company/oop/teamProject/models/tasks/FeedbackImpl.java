@@ -62,6 +62,10 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         return id;
     }
 
+    public EnumsForFeedbackStatus getFeedbackStatus() {
+        return status;
+    }
+
     @Override
     public String getAsString() {
         return """
@@ -69,6 +73,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
                 Description:
                 %s
                 Rating: %d
-                Status: %s""".formatted(id, getTitle(), getDescription(), rating, status);
+                Status: %s
+                """.formatted(id, getTitle(), getDescription(), rating, status);
     }
 }

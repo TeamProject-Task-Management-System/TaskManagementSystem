@@ -22,4 +22,8 @@ public interface Bug extends Task {
     void setAssignee(Member assignee);
 
     Member getAssignee();
+
+    EnumsForBugStatus getBugStatus();
+
+    Priority getBugPriority();
 }

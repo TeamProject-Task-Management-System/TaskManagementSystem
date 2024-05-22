@@ -11,4 +11,5 @@ public interface Feedback extends Task {
 
     void changeFeedbackStatus(EnumsForFeedbackStatus newStatus);
 
+    EnumsForFeedbackStatus getFeedbackStatus();
 }

@@ -65,6 +65,10 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowAllTasks(taskManagementRepository);
             case LISTALLTASKS:
                 return new ListAllTasksCommand(taskManagementRepository);
+            case LISTBUGSBYSTATUS:
+                return new ListBugsByStatus(taskManagementRepository);
+            case LISTBUGSBYASSIGNEE:
+                return new ListBugsByAssignee(taskManagementRepository);
             default:
                 throw new IllegalArgumentException();
         }
