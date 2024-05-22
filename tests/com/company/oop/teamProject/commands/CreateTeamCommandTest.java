@@ -34,8 +34,7 @@ public class CreateTeamCommandTest {
     }
 
     @Test
-    public void execute_Should_AddNewTeam_When_PassedValidInput() {
-
+    public void execute_Should_CreateNewTeam_When_PassedValidInput() {
         List<String> params = List.of("TeamOO");
 
         createTeamCommand.execute(params);

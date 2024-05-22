@@ -32,8 +32,7 @@ public class CreateMemberCommandTest {
     }
 
     @Test
-    public void execute_Should_AddNewMember_When_PassedValidInput() {
-
+    public void execute_Should_CreateNewMember_When_PassedValidInput() {
         List<String> params = List.of("Petar");
 
         createMemberCommand.execute(params);
