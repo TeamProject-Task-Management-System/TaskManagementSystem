@@ -19,12 +19,14 @@ public class StoryImpl extends Content implements Story {
     private int id;
     private Size size;
     private EnumsForStoryStatus status;
+    private Priority priority;
 
     public StoryImpl(int id, String title, String description, Priority priority, Size size) {
         super(title, description, priority);
         this.id = id;
         this.status = EnumsForStoryStatus.NOT_DONE;
         this.size = size;
+        this.priority = priority;
     }
 
     @Override
@@ -61,6 +63,16 @@ public class StoryImpl extends Content implements Story {
         Size previousSize = this.size;
         this.size = newSize;
         createNewEvent(String.format("Size status changed from %s to %s", previousSize, size));
+    }
+
+    @Override
+    public void changePriority(Priority priority) {
+        if (priority == this.priority){
+            throw new IllegalArgumentException(String.format("Priority is already %s", priority));
+        }
+        Priority previousPriority = this.priority;
+        this.priority = priority;
+        createNewEvent(String.format("Story's priority changed from %s to %s", previousPriority, priority));
     }
 
     @Override

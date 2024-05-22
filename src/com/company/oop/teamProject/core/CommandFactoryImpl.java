@@ -59,6 +59,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ChangeBugPriorityCommand(taskManagementRepository);
             case CHANGEFEEDBACKRATING:
                 return new ChangeFeedbackRatingCommand(taskManagementRepository);
+            case CHANGESTORYPRIORITY:
+                return new ChangeStoryPriorityCommand(taskManagementRepository);
             default:
                 throw new IllegalArgumentException();
         }
