@@ -1,8 +1,25 @@
 package com.company.oop.teamProject.core;
 
-import com.company.oop.teamProject.command.*;
+import com.company.oop.teamProject.command.addingCommands.AddMemberToTeamCommand;
+import com.company.oop.teamProject.command.assignOrUnAssignCommands.AssignBugCommand;
+import com.company.oop.teamProject.command.assignOrUnAssignCommands.AssignStoryCommand;
+import com.company.oop.teamProject.command.assignOrUnAssignCommands.UnassignBugCommand;
+import com.company.oop.teamProject.command.assignOrUnAssignCommands.UnassignStoryCommand;
+import com.company.oop.teamProject.command.changingCommandsForBug.ChangeBugPriorityCommand;
+import com.company.oop.teamProject.command.changingCommandsForBug.ChangeBugSeverityCommand;
+import com.company.oop.teamProject.command.changingCommandsForBug.ChangeBugStatusCommand;
+import com.company.oop.teamProject.command.changingCommandsForFeedback.ChangeFeedbackRatingCommand;
+import com.company.oop.teamProject.command.changingCommandsForFeedback.ChangeFeedbackStatusCommand;
+import com.company.oop.teamProject.command.changingCommandsForStory.ChangeStoryPriorityCommand;
+import com.company.oop.teamProject.command.changingCommandsForStory.ChangeStorySizeCommand;
+import com.company.oop.teamProject.command.changingCommandsForStory.ChangeStoryStatusCommand;
 import com.company.oop.teamProject.command.contracts.Command;
 import com.company.oop.teamProject.command.contracts.enums.CommandType;
+import com.company.oop.teamProject.command.creationCommands.*;
+import com.company.oop.teamProject.command.listingCommands.ListAllTasksCommand;
+import com.company.oop.teamProject.command.listingCommands.ListBugsByAssignee;
+import com.company.oop.teamProject.command.listingCommands.ListBugsByStatus;
+import com.company.oop.teamProject.command.showCommands.*;
 import com.company.oop.teamProject.core.contracts.CommandFactory;
 import com.company.oop.teamProject.core.contracts.TaskManagementRepository;
 import com.company.oop.teamProject.utils.ParsingHelpers;

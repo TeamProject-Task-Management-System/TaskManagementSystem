@@ -1,7 +1,6 @@
 package com.company.oop.teamProject.commands;
 
-import com.company.oop.teamProject.command.CreateMemberCommand;
-import com.company.oop.teamProject.command.CreateTeamCommand;
+import com.company.oop.teamProject.command.creationCommands.CreateMemberCommand;
 import com.company.oop.teamProject.core.TaskManagementRepositoryImpl;
 import com.company.oop.teamProject.core.contracts.TaskManagementRepository;
 import com.company.oop.teamProject.utils.TestUtilities;

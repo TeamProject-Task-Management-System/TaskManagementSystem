@@ -1,6 +1,6 @@
 package com.company.oop.teamProject.commands;
 
-import com.company.oop.teamProject.command.CreateTeamCommand;
+import com.company.oop.teamProject.command.creationCommands.CreateTeamCommand;
 import com.company.oop.teamProject.core.TaskManagementRepositoryImpl;
 import com.company.oop.teamProject.core.contracts.TaskManagementRepository;
 import com.company.oop.teamProject.utils.TestUtilities;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-import javax.swing.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
