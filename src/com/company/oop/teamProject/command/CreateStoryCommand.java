@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CreateStoryCommand extends BaseCommand{
 
-    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 5;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 4;
     private static final String STORY_CREATED = "Story with name %s created.";
 
     public CreateStoryCommand(TaskManagementRepository taskManagementRepository) {
