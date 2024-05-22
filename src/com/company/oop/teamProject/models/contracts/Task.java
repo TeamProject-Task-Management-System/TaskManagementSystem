@@ -11,4 +11,6 @@ public interface Task extends Identifiable, Printable {
     List<Comment> getComments();
 
     List<EventLog> getHistory();
+
+    void addComment(Comment comment);
 }

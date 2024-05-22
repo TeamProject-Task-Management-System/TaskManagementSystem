@@ -24,7 +24,7 @@ public interface TaskManagementRepository {
 
     Feedback createNewFeedback(String title, String description, int rating);
 
-    Comment createComment(String author, String description);
+    Comment createComment(int taskId, String author, String description);
 
     Member getMemberByName(String memberName);
 
@@ -33,6 +33,8 @@ public interface TaskManagementRepository {
     Board getBoardByName(String name);
 
     Task getTaskByName (String name);
+
+    Task getTaskById (int id);
 
     Bug getBugById(int id);
 

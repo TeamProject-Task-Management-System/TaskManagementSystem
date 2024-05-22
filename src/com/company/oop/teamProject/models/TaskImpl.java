@@ -53,4 +53,8 @@ public abstract class TaskImpl implements Task {
         return new ArrayList<>(eventLogs);
     }
 
+    @Override
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
 }

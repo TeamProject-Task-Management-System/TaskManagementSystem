@@ -108,8 +108,11 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public Comment createComment(String author, String description) {
-        return new CommentImpl(author, description);
+    public Comment createComment(int taskId, String author, String description) {
+        Comment comment = new CommentImpl(author, description);
+        Task task = getTaskById(taskId);
+        task.addComment(comment);
+        return comment;
     }
 
     @Override
@@ -152,6 +155,16 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
             }
         }
         throw new IllegalArgumentException(String.format("There is not task with name %s", name));
+    }
+
+    @Override
+    public Task getTaskById (int id) {
+        for (Task task : tasks) {
+            if (task.getId() == id) {
+                return task;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is not task with ID %d", id));
     }
 
     @Override
