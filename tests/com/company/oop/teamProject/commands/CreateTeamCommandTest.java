@@ -34,4 +34,14 @@ public class CreateTeamCommandTest {
         assertThrows(IllegalArgumentException.class, () -> createTeamCommand.execute(params));
     }
 
+    @Test
+    public void execute_Should_AddNewTeam_When_PassedValidInput() {
+
+        List<String> params = List.of("TeamOO");
+
+        createTeamCommand.execute(params);
+
+        Assertions.assertEquals(1, repository.getTeams().size());
+    }
+
 }
