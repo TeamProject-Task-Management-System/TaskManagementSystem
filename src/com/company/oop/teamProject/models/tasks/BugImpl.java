@@ -1,6 +1,10 @@
 package com.company.oop.teamProject.models.tasks;
 
+import com.company.oop.teamProject.models.TaskImpl;
+import com.company.oop.teamProject.models.contracts.Member;
+import com.company.oop.teamProject.models.tasks.contracts.Assignable;
 import com.company.oop.teamProject.models.tasks.contracts.Bug;
+import com.company.oop.teamProject.models.tasks.contracts.Prioritizable;
 import com.company.oop.teamProject.models.tasks.enums.EnumsForBugStatus;
 import com.company.oop.teamProject.models.tasks.enums.Priority;
 import com.company.oop.teamProject.models.tasks.enums.Severity;
@@ -10,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BugImpl extends Content implements Bug {
+public class BugImpl extends TaskImpl implements Bug, Assignable, Prioritizable {
     public static final int TILE_MIN_LENGTH = 10;
     public static final int TITLE_MAX_LENGTH = 100;
     public static final String TITLE_ERR_MESSAGE = "Title name must be between 10 and 100";
@@ -24,17 +28,16 @@ public class BugImpl extends Content implements Bug {
     private Priority priority;
     private final List<String> steps = new ArrayList<>();
     private EnumsForBugStatus status;
-    private List<Bug> bugs;
+    private Member assignee;
 
     public BugImpl(int id, String title, String description, Priority priority, Severity severity) {
-        super(title, description, priority);
+        super(title, description);
         this.id = id;
         this.status = EnumsForBugStatus.ACTIVE;
         this.severity = severity;
         this.priority = priority;
-        this.bugs = new ArrayList<>();
+        setAssignee(assignee);
     }
-
 
     @Override
     protected void validateTitle(String title) {
@@ -62,8 +65,9 @@ public class BugImpl extends Content implements Bug {
         createNewEvent(String.format("Bug status changed from %s to %s", previousStatus, status));
     }
 
-    public List<Bug> getBugs() {
-        return new ArrayList<>(bugs);
+    @Override
+    public void setAssignee(Member assignee) {
+        this.assignee = assignee;
     }
 
     @Override
@@ -104,5 +108,26 @@ public class BugImpl extends Content implements Bug {
     @Override
     public void addStep(String step) {
         steps.add(step);
+    }
+
+    @Override
+    public Member getAssignee() {
+        return assignee;
+    }
+
+    @Override
+    public Priority getPriority() {
+        return priority;
+    }
+
+    @Override
+    public String getAsString() {
+        return """
+                Bug ID: %d %s
+                Description:
+                %s
+                Severity: %s
+                Priority: %s
+                Status: %s""".formatted(id, getTitle(), getDescription(), severity, priority, status);
     }
 }

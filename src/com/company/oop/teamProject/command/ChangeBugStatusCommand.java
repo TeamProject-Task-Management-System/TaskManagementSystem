@@ -12,6 +12,7 @@ public class ChangeBugStatusCommand extends BaseCommand {
 
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private static final String BUG_STATUS_CHANGED = "Bug %s's status changed to %s";
+    private static final String ID_ERROR = "Id must be valid Integer";
 
     public ChangeBugStatusCommand(TaskManagementRepository taskManagementRepository) {
         super(taskManagementRepository);
@@ -20,7 +21,7 @@ public class ChangeBugStatusCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        Bug bug = getTaskManagementRepository().getBugByTitle(parameters.get(0));
+        Bug bug = getTaskManagementRepository().getBugById(ParsingHelpers.tryParseInt(parameters.get(0), ID_ERROR));
         EnumsForBugStatus status = ParsingHelpers.tryParseEnum(parameters.get(1), EnumsForBugStatus.class);
 
         bug.changeBugStatus(status);

@@ -20,6 +20,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     private final List<Member> members;
     private final List<Team> teams;
+    private final List<Task> tasks;
     private final List<Bug> bugs;
     private final List<Story> stories;
     private final List<Feedback> feedbacks;
@@ -30,6 +31,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         nextId = 0;
         this.teams = new ArrayList<>();
         this.members = new ArrayList<>();
+        this.tasks = new ArrayList<>();
         this.bugs = new ArrayList<>();
         this.stories = new ArrayList<>();
         this.feedbacks = new ArrayList<>();
@@ -84,6 +86,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
                             Severity severity) {
         Bug bug = new BugImpl(++nextId, title, description, priority, severity);
         bugs.add(bug);
+        tasks.add(bug);
         return bug;
     }
 
@@ -92,6 +95,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
                                 Size size) {
         Story story = new StoryImpl(++nextId, title, description, priority, size);
         stories.add(story);
+        tasks.add(story);
         return story;
     }
 
@@ -99,6 +103,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     public Feedback createNewFeedback(String title, String description, int rating) {
         Feedback feedback = new FeedbackImpl(++nextId, title, description, rating);
         feedbacks.add(feedback);
+        tasks.add(feedback);
         return feedback;
     }
 
@@ -140,33 +145,43 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
-    public Bug getBugByTitle(String title) {
+    public Task getTaskByName(String name) {
+        for (Task task : tasks) {
+            if (task.getTitle().equals(name)) {
+                return task;
+            }
+        }
+        throw new IllegalArgumentException(String.format("There is not task with name %s", name));
+    }
+
+    @Override
+    public Bug getBugById(int id) {
         for (Bug bug : bugs) {
-            if (bug.getTitle().equals(title)){
+            if (bug.getId() == id){
                 return bug;
             }
         }
-        throw new IllegalArgumentException(String.format("There is no bug with title: %s", title));
+        throw new IllegalArgumentException(String.format("There is no bug with id: %d", id));
     }
 
     @Override
-    public Story getStoryByTitle(String title) {
+    public Story getStoryById(int id) {
         for (Story story : stories) {
-            if (story.getTitle().equals(title)) {
+            if (story.getId() == id) {
                 return story;
             }
         }
-        throw new IllegalArgumentException(String.format("There is no story with title: %s", title));
+        throw new IllegalArgumentException(String.format("There is no story with id: %d", id));
     }
 
     @Override
-    public Feedback getFeedbackByTitle(String title) {
+    public Feedback getFeedbackById(int id) {
         for (Feedback feedback : feedbacks) {
-            if (feedback.getTitle().equals(title)) {
+            if (feedback.getId() == id) {
                 return feedback;
             }
         }
-        throw new IllegalArgumentException(String.format("There is no feedback with title: %s", title));
+        throw new IllegalArgumentException(String.format("There is no feedback with id: %s", id));
     }
 
     @Override
@@ -212,13 +227,26 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
     }
 
     @Override
+    public String showAllTasks() {
+        if (tasks.isEmpty()) {
+            throw new IllegalArgumentException("There are no tasks!");
+        }
+        StringBuilder result = new StringBuilder();
+        result.append("Tasks:").append(System.lineSeparator());
+        for (Task task : tasks) {
+            result.append("ID: ").append(task.getId()).append(" ").append(task.getTitle()).append(System.lineSeparator());
+        }
+        return result.toString().trim();
+    }
+
+    @Override
     public String showAllTeamMembers(String teamName) {
         StringBuilder result = new StringBuilder();
         for (Team team : teams) {
             if (team.getName().equalsIgnoreCase(teamName)) {
                 result.append("Team ").append(team.getName()).append("'s members:").append(System.lineSeparator());
                 for (Member member : team.getTeamMembers()) {
-                    result.append(member.getName()).append("\n");
+                    result.append(member.getName()).append(System.lineSeparator());
                 }
                 return result.toString().trim();
             }
@@ -228,19 +256,23 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     public void assignBug(Bug bug, Member member){
         member.assignTask(bug);
+        bug.setAssignee(member);
     }
 
 
     public void assignStory(Story story, Member member){
         member.assignTask(story);
+        story.setAssignee(member);
     }
 
     public void unassignBug(Bug bug, Member member){
         member.unassignTask(bug);
+        bug.setAssignee(null);
     }
 
     public void unassignStory(Story story, Member member){
         member.unassignTask(story);
+        story.setAssignee(null);
     }
 
 
@@ -250,6 +282,10 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
 
     public List<Team> getTeams() {
         return new ArrayList<>(teams);
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
     }
 
     public List<Bug> getBugs() {

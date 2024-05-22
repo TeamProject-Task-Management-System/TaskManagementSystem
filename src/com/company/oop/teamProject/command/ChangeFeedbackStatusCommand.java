@@ -12,6 +12,7 @@ public class ChangeFeedbackStatusCommand extends BaseCommand {
 
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private static final String FEEDBACK_STATUS_CHANGED = "Feedback %s's status changed to %s";
+    private static final String ID_ERROR = "Id must be valid Integer";
 
     public ChangeFeedbackStatusCommand(TaskManagementRepository taskManagementRepository) {
         super(taskManagementRepository);
@@ -20,7 +21,8 @@ public class ChangeFeedbackStatusCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        Feedback feedback = getTaskManagementRepository().getFeedbackByTitle(parameters.get(0));
+        Feedback feedback = getTaskManagementRepository()
+                .getFeedbackById(ParsingHelpers.tryParseInt(parameters.get(0), ID_ERROR));
         EnumsForFeedbackStatus status = ParsingHelpers.tryParseEnum(parameters.get(1), EnumsForFeedbackStatus.class);
 
         feedback.changeFeedbackStatus(status);

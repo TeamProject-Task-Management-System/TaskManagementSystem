@@ -2,7 +2,7 @@ package com.company.oop.teamProject.models.contracts;
 
 import java.util.List;
 
-public interface Task extends Identifiable {
+public interface Task extends Identifiable, Printable {
 
     String getTitle();
 

@@ -1,5 +1,6 @@
 package com.company.oop.teamProject.models.tasks.contracts;
 
+import com.company.oop.teamProject.models.contracts.Member;
 import com.company.oop.teamProject.models.contracts.Task;
 import com.company.oop.teamProject.models.tasks.enums.EnumsForBugStatus;
 import com.company.oop.teamProject.models.tasks.enums.Priority;
@@ -17,4 +18,8 @@ public interface Bug extends Task {
     void changePriority(Priority priority);
 
     void changeBugStatus(EnumsForBugStatus newStatus);
+
+    void setAssignee(Member assignee);
+
+    Member getAssignee();
 }

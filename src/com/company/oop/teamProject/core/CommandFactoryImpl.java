@@ -61,6 +61,10 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ChangeFeedbackRatingCommand(taskManagementRepository);
             case CHANGESTORYPRIORITY:
                 return new ChangeStoryPriorityCommand(taskManagementRepository);
+            case SHOWALLTASKS:
+                return new ShowAllTasks(taskManagementRepository);
+            case LISTALLTASKS:
+                return new ListAllTasksCommand(taskManagementRepository);
             default:
                 throw new IllegalArgumentException();
         }

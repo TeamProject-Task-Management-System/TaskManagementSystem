@@ -12,6 +12,7 @@ public class ChangeStoryPriorityCommand extends BaseCommand{
 
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private static final String STORY_PRIORITY_CHANGED = "Story %s's priority changed to %s";
+    private static final String ID_ERROR = "Id must be valid Integer";
 
     public ChangeStoryPriorityCommand(TaskManagementRepository taskManagementRepository) {
         super(taskManagementRepository);
@@ -20,7 +21,7 @@ public class ChangeStoryPriorityCommand extends BaseCommand{
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters,EXPECTED_NUMBER_OF_ARGUMENTS);
-        Story story = getTaskManagementRepository().getStoryByTitle(parameters.get(0));
+        Story story = getTaskManagementRepository().getStoryById(ParsingHelpers.tryParseInt(parameters.get(0), ID_ERROR));
         Priority priority = ParsingHelpers.tryParseEnum(parameters.get(1),Priority.class);
 
         story.changePriority(priority);

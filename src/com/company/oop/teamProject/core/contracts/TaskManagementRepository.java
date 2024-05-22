@@ -32,11 +32,13 @@ public interface TaskManagementRepository {
 
     Board getBoardByName(String name);
 
-    Bug getBugByTitle(String title);
+    Task getTaskByName (String name);
 
-    Story getStoryByTitle(String title);
+    Bug getBugById(int id);
 
-    Feedback getFeedbackByTitle(String title);
+    Story getStoryById(int id);
+
+    Feedback getFeedbackById(int id);
 
     String showAllMembers();
 
@@ -44,11 +46,15 @@ public interface TaskManagementRepository {
 
     String showAllBoards();
 
+    String showAllTasks();
+
     String showAllTeamMembers(String teamName);
 
     public List<Member> getMembers();
 
     public List<Team> getTeams();
+
+    public List<Task> getTasks();
 
     public List<Bug> getBugs();
 

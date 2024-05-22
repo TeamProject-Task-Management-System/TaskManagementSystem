@@ -12,6 +12,7 @@ import java.util.List;
 public class ChangeBugSeverityCommand extends BaseCommand {
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private static final String SEVERITY_CHANGED = "Bug %s's severity changed to %s";
+    private static final String ID_ERROR = "Id must be valid Integer";
 
     public ChangeBugSeverityCommand(TaskManagementRepository taskManagementRepository) {
         super(taskManagementRepository);
@@ -20,7 +21,7 @@ public class ChangeBugSeverityCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        Bug title = getTaskManagementRepository().getBugByTitle(parameters.get(0));
+        Bug title = getTaskManagementRepository().getBugById(ParsingHelpers.tryParseInt(parameters.get(0), ID_ERROR));
         Severity severity = ParsingHelpers.tryParseEnum(parameters.get(1), Severity.class);
 
        title.changeSeverity(severity);
