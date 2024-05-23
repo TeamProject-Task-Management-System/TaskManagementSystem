@@ -16,9 +16,7 @@ import com.company.oop.teamProject.command.changingCommandsForStory.ChangeStoryS
 import com.company.oop.teamProject.command.contracts.Command;
 import com.company.oop.teamProject.command.contracts.enums.CommandType;
 import com.company.oop.teamProject.command.creationCommands.*;
-import com.company.oop.teamProject.command.listingCommands.ListAllTasksCommand;
-import com.company.oop.teamProject.command.listingCommands.ListBugsByAssignee;
-import com.company.oop.teamProject.command.listingCommands.ListBugsByStatus;
+import com.company.oop.teamProject.command.listingCommands.*;
 import com.company.oop.teamProject.command.showCommands.*;
 import com.company.oop.teamProject.core.contracts.CommandFactory;
 import com.company.oop.teamProject.core.contracts.TaskManagementRepository;
@@ -54,10 +52,6 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowAllBoardsCommand(taskManagementRepository);
             case SHOWALLTEAMMEMBERS:
                 return new ShowAllTeamMembersCommand(taskManagementRepository);
-            case SHOWTEAMACTIVITY:
-                return new ShowTeamActivity(taskManagementRepository);
-            case SHOWMEMBERACTIVITY:
-                return new ShowMemberActivity(taskManagementRepository);
             case ASSIGNBUG:
                 return new AssignBugCommand(taskManagementRepository);
             case ASSIGNSTORY:
@@ -87,9 +81,13 @@ public class CommandFactoryImpl implements CommandFactory {
             case LISTALLTASKS:
                 return new ListAllTasksCommand(taskManagementRepository);
             case LISTBUGSBYSTATUS:
-                return new ListBugsByStatus(taskManagementRepository);
+                return new ListBugsByStatusCommand(taskManagementRepository);
             case LISTBUGSBYASSIGNEE:
-                return new ListBugsByAssignee(taskManagementRepository);
+                return new ListBugsByAssigneeCommand(taskManagementRepository);
+            case LISTSTORYBYASSIGNEE:
+                return new ListStoryByAssigneeCommand(taskManagementRepository);
+            case LISTSTORYBYSTATUS:
+                return new ListStoryByStatusCommand(taskManagementRepository);
             default:
                 throw new IllegalArgumentException();
         }
