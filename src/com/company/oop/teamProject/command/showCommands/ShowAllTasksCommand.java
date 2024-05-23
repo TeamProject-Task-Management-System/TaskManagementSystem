@@ -5,8 +5,8 @@ import com.company.oop.teamProject.core.contracts.TaskManagementRepository;
 
 import java.util.List;
 
-public class ShowAllTasks extends BaseCommand {
-    public ShowAllTasks(TaskManagementRepository taskManagementRepository) {
+public class ShowAllTasksCommand extends BaseCommand {
+    public ShowAllTasksCommand(TaskManagementRepository taskManagementRepository) {
         super(taskManagementRepository);
     }
 

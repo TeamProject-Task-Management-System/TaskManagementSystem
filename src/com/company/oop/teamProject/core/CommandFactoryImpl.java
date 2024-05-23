@@ -79,7 +79,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case CHANGESTORYPRIORITY:
                 return new ChangeStoryPriorityCommand(taskManagementRepository);
             case SHOWALLTASKS:
-                return new ShowAllTasks(taskManagementRepository);
+                return new ShowAllTasksCommand(taskManagementRepository);
             case LISTALLTASKS:
                 return new ListAllTasksCommand(taskManagementRepository);
             case LISTBUGSBYSTATUS:
