@@ -15,17 +15,16 @@ public class EventLogImpl implements EventLog {
         this.timeStamp = LocalDate.now();
     }
 
-    @Override
-    public String getDescription(){
-        return String.format("[%s] %s", timeStamp.format(formatter), description);
-    }
-
-
-    public void setDescription(String description){
+    private void setDescription(String description){
         if ( description.isEmpty()){
             throw new IllegalArgumentException("Description cannot be empty");
         }
         this.description = description;
         this.timeStamp = LocalDate.now();
+    }
+
+    @Override
+    public String getDescription(){
+        return String.format("[%s] %s", timeStamp.format(formatter), description);
     }
 }

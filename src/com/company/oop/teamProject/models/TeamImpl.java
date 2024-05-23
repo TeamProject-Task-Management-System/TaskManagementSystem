@@ -30,20 +30,7 @@ public class TeamImpl implements Team {
         ValidationHelper.validateIntRange(name.length(), TEAM_NAME_MIN_LENGTH,
                 TEAM_NAME_MAX_LENGTH, TEAM_NAME_ERR_MESSAGE);
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public List<Member> getTeamMembers() {
-        return new ArrayList<>(teamMembers);
-    }
-
-    @Override
-    public List<Board> getTeamBoards() {
-        return new ArrayList<>(teamBoards);
+        createNewEvent(String.format("Team name set to %s", name));
     }
 
     @Override
@@ -64,11 +51,29 @@ public class TeamImpl implements Team {
         createNewEvent(String.format("Board %s has been added to team %s", board, this.name));
     }
 
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public List<Member> getTeamMembers() {
+        return new ArrayList<>(teamMembers);
+    }
+
+    @Override
+    public List<Board> getTeamBoards() {
+        return new ArrayList<>(teamBoards);
+    }
+
     protected void createNewEvent(String event) {
         eventLogs.add(new EventLogImpl(event));
     }
 
-    public List<EventLog> getHistory() {
-        return new ArrayList<>(eventLogs);
+    public String getHistory() {
+        StringBuilder result = new StringBuilder();
+        for (EventLog eventLog : eventLogs) {
+            result.append(eventLog.getDescription()).append(System.lineSeparator());
+        }
+        return result.toString().trim();
     }
 }

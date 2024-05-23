@@ -25,6 +25,7 @@ public class BoardImpl implements Board {
     private void setName(String name) {
         ValidationHelper.validateIntRange(name.length(), BOARD_NAME_MIN_LENGTH, BOARD_NAME_MAX_LENGTH, BOARD_NAME_ERR_MESSAGE);
         this.name = name;
+        createNewEvent(String.format("Board name set to %s", name));
     }
 
     @Override

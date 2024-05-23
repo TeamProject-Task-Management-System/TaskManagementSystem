@@ -10,7 +10,7 @@ public interface Team {
 
     public List<Board> getTeamBoards();
 
-    List<EventLog> getHistory();
+    String getHistory();
 
     void addMemberToTeam(Member member);
 

@@ -8,7 +8,7 @@ public interface Member {
 
     List<Task> getTasks();
 
-    List<EventLog> getHistory();
+    String getHistory();
 
     void assignTask(Task task);
 

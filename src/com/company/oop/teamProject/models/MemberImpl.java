@@ -25,6 +25,7 @@ public class MemberImpl implements Member {
     private void setName(String name) {
         ValidationHelper.validateIntRange(name.length() ,MEMBER_NAME_MIN_LENGTH, MEMBER_NAME_MAX_LENGTH, MEMBER_NAME_ERR_MESSAGE);
         this.name = name;
+        createNewEvent(String.format("Member name set to %s", name));
     }
 
     @Override
@@ -54,7 +55,11 @@ public class MemberImpl implements Member {
         eventLogs.add(new EventLogImpl(event));
     }
 
-    public List<EventLog> getHistory() {
-        return new ArrayList<>(eventLogs);
+    public String getHistory() {
+        StringBuilder result = new StringBuilder();
+        for (EventLog eventLog : eventLogs) {
+            result.append(eventLog.getDescription()).append(System.lineSeparator());
+        }
+        return result.toString().trim();
     }
 }
