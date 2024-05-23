@@ -88,6 +88,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ListStoryByAssigneeCommand(taskManagementRepository);
             case LISTSTORYBYSTATUS:
                 return new ListStoryByStatusCommand(taskManagementRepository);
+            case LISTFEEDBACKBYSTATUS:
+                return new ListFeedbackByStatusCommand(taskManagementRepository);
             default:
                 throw new IllegalArgumentException();
         }
