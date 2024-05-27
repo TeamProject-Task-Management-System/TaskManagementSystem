@@ -120,7 +120,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         for (Member member : members) {
             if (member.getName().equals(memberName)) {
                 return member;
-            }
+             }
         }
         throw new IllegalArgumentException(String.format("There is not member with name %s", memberName));
     }
