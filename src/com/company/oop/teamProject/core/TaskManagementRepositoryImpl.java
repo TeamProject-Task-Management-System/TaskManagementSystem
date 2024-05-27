@@ -228,8 +228,7 @@ public class TaskManagementRepositoryImpl implements TaskManagementRepository {
         StringBuilder result = new StringBuilder();
         for (Team team : teams) {
             if (team.getTeamBoards().isEmpty()) {
-                System.out.printf("Team %s does not have any boards.", team);
-                continue;
+                throw new IllegalArgumentException(String.format("Team %s does not have any boards.",team));
             }
             result.append("Team ").append(team.getName()).append("'s boards:").append(System.lineSeparator());
             for (Board teamBoard : team.getTeamBoards()) {

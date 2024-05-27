@@ -8,7 +8,7 @@ public interface Team {
 
     List<Member> getTeamMembers();
 
-    public List<Board> getTeamBoards();
+    List<Board> getTeamBoards();
 
     String getHistory();
 
