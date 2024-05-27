@@ -38,4 +38,5 @@ public class ListStoryByAssigneeCommand extends BaseCommand {
                 .sorted(Comparator.comparing(story -> story.getStoryPriority()))
                 .sorted(Comparator.comparing(story -> story.getSize()))
                 .collect(Collectors.toList());
+    }
 }
