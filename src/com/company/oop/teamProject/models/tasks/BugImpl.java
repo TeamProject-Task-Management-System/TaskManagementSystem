@@ -14,13 +14,6 @@ import java.util.List;
 
 
 public class BugImpl extends TaskImpl implements Bug, Assignable {
-    public static final int TILE_MIN_LENGTH = 10;
-    public static final int TITLE_MAX_LENGTH = 100;
-    public static final String TITLE_ERR_MESSAGE = "Title name must be between 10 and 100";
-
-    public static final int DESCRIPTION_MIN_LENGTH = 10;
-    public static final int DESCRIPTION_MAX_LENGTH = 500;
-    public static final String DESCRIPTION_ERR_MESSAGE = "Description name must be between 10 and 500";
 
     private int id;
     private Severity severity;
@@ -36,22 +29,6 @@ public class BugImpl extends TaskImpl implements Bug, Assignable {
         this.severity = severity;
         this.priority = priority;
         setAssignee(assignee);
-    }
-
-    @Override
-    protected void validateTitle(String title) {
-        ValidationHelper.validateIntRange(title.length(),
-                TILE_MIN_LENGTH,
-                TITLE_MAX_LENGTH,
-                TITLE_ERR_MESSAGE);
-    }
-
-    @Override
-    protected void validateDescription(String description) {
-        ValidationHelper.validateIntRange(description.length(),
-                DESCRIPTION_MIN_LENGTH,
-                DESCRIPTION_MAX_LENGTH,
-                DESCRIPTION_ERR_MESSAGE);
     }
 
     @Override

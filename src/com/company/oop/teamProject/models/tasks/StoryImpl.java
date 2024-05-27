@@ -10,13 +10,6 @@ import com.company.oop.teamProject.models.tasks.enums.Size;
 import com.company.oop.teamProject.utils.ValidationHelper;
 
 public class StoryImpl extends TaskImpl implements Story, Assignable {
-    public static final int TITLE_MIN_LENGTH = 10;
-    public static final int TITLE_MAX_LENGTH = 100;
-    public static final String TITLE_ERR_MESSAGE = "Title must be between 10 and 100";
-
-    public static final int DESCRIPTION_MIN_LENGTH = 10;
-    public static final int DESCRIPTION_MAX_LENGTH = 500;
-    public static final String DESCRIPTION_ERR_MESSAGE = "Description must be between 10 and 500";
 
     private int id;
     private Size size;
@@ -31,17 +24,6 @@ public class StoryImpl extends TaskImpl implements Story, Assignable {
         this.size = size;
         this.priority = priority;
         setAssignee(assignee);
-    }
-
-    @Override
-    protected void validateTitle(String title) {
-        ValidationHelper.validateIntRange(title.length(), TITLE_MIN_LENGTH, TITLE_MAX_LENGTH, TITLE_ERR_MESSAGE);
-    }
-
-    @Override
-    protected void validateDescription(String description) {
-        ValidationHelper.validateIntRange(description.length(), DESCRIPTION_MIN_LENGTH,
-                DESCRIPTION_MAX_LENGTH, DESCRIPTION_ERR_MESSAGE);
     }
 
     @Override
