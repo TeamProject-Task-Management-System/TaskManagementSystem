@@ -22,16 +22,13 @@ public class ListAllTasksCommand extends BaseCommand {
 
     @Override
     protected String executeCommand(List<String> parameters) {
-        ValidationHelper.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        String name = parameters.get(0);
 
-        return ListingHelper.elementsToString(filterNeeded(tasks, name));
+        return ListingHelper.elementsToString(filterNeeded(tasks));
     }
 
-    private List<Task> filterNeeded(List<Task> tasks, String name) {
+    private List<Task> filterNeeded(List<Task> tasks) {
         return tasks
                 .stream()
-                .filter(task -> task.getTitle().contains(name))
                 .sorted(Comparator.comparing(task -> task.getTitle()))
                 .collect(Collectors.toList());
     }

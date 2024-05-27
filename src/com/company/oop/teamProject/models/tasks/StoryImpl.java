@@ -91,9 +91,10 @@ public class StoryImpl extends TaskImpl implements Story, Assignable {
                 Story ID: %d %s
                 Description:
                 %s
+                Assignee: %s
                 Size: %s
                 Priority: %s
                 Status: %s
-                """.formatted(id, getTitle(), getDescription(), size, priority, status);
+                """.formatted(id, getTitle(), getDescription(), assignee.getName(), size, priority, status);
     }
 }

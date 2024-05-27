@@ -106,9 +106,10 @@ public class BugImpl extends TaskImpl implements Bug, Assignable {
                 Bug ID: %d %s
                 Description:
                 %s
+                Assignee: %s
                 Severity: %s
                 Priority: %s
                 Status: %s
-                """.formatted(id, getTitle(), getDescription(), severity, priority, status);
+                """.formatted(id, getTitle(), getDescription(), assignee.getName(), severity, priority, status);
     }
 }

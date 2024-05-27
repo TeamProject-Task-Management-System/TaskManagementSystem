@@ -36,6 +36,9 @@ After finishing with the skeleton of the program we created the **unitTests**.
 
 
 ## Commands
+
+> Hint: When writing parameters you need to add " | " before and after every parameter.
+
 > addingCommands,
 > assignOrUnAssignCommands,
 > changingCommandsForBug,
@@ -44,5 +47,31 @@ After finishing with the skeleton of the program we created the **unitTests**.
 > contracts,
 > creationCommands,
 > listingCommands,
-> showCommands,
+> showCommands
+
+
+## Sample Input
+
+```none
+createteam |Team1|
+createteam |Team2|
+createmember |Member1|
+createmember |Member2|
+createmember |Member3|
+createmember |Member4|
+addmembertoteam |Member1|Team1|
+addmembertoteam |Member2|Team1|
+addmembertoteam |Member3|Team2|
+addmembertoteam |Member4|Team2|
+createbug |Login Button Unresponsive|Button does not work|High|Minor|
+createbug |Page Crash on Submit|Page crashes on action|Low|Major|
+createstory |Implement Dark Mode|Support dark theme|Medium|Small|
+createstory |Develop Mobile App|Create mobile app|High|Large|
+showalltasks
+assignbug |1|Member1|
+assignbug |2|Member2|
+assignstory |3|Member3|
+assignstory |4|Member4|
+listalltasks
+```
 
