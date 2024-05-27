@@ -75,3 +75,81 @@ assignstory |4|Member4|
 listalltasks
 ```
 
+## Sample Output
+
+```none
+Team with name Team1 crated.
+####################
+Team with name Team2 crated.
+####################
+Member with name Member1 created.
+####################
+Member with name Member2 created.
+####################
+Member with name Member3 created.
+####################
+Member with name Member4 created.
+####################
+Member Member1 has been added to team Team1.
+####################
+Member Member2 has been added to team Team1.
+####################
+Member Member3 has been added to team Team2.
+####################
+Member Member4 has been added to team Team2.
+####################
+Bug with name Login Button Unresponsive created.
+####################
+Bug with name Page Crash on Submit created.
+####################
+Story with name Implement Dark Mode created.
+####################
+Story with name Develop Mobile App created.
+####################
+Tasks:
+ID: 1 Login Button Unresponsive
+ID: 2 Page Crash on Submit
+ID: 3 Implement Dark Mode
+ID: 4 Develop Mobile App
+####################
+Bug Login Button Unresponsive assigned to member Member1.
+####################
+Bug Page Crash on Submit assigned to member Member2.
+####################
+Story Implement Dark Mode assigned to member Member3.
+####################
+Story Develop Mobile App assigned to member Member4.
+####################
+Story ID: 4 Develop Mobile App
+Description:
+Create mobile app
+Assignee: Member4
+Size: Large
+Priority: High
+Status: Not Done
+####################
+Story ID: 3 Implement Dark Mode
+Description:
+Support dark theme
+Assignee: Member3
+Size: Small
+Priority: Medium
+Status: Not Done
+####################
+Bug ID: 1 Login Button Unresponsive
+Description:
+Button does not work
+Assignee: Member1
+Severity: Minor
+Priority: High
+Status: Active
+####################
+Bug ID: 2 Page Crash on Submit
+Description:
+Page crashes on action
+Assignee: Member2
+Severity: Major
+Priority: Low
+Status: Active
+####################
+```
